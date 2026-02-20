@@ -3,12 +3,12 @@ const { Schema } = mongoose;
 
 const transactionSchema = new Schema({
   title: String,
-  amount: String,
+  amount: Number,
   catagory: String,
-  date: Number,
+  date: Date,
 });
 
-const transaction =
-  mongoose.model.transaction ||
-  mongoose.model("transaction", transactionSchema, "transactions");
-export default transaction;
+const Transaction =
+  mongoose.model.Transaction ||
+  mongoose.model("Transaction", transactionSchema, "transactions");
+export default Transaction;
