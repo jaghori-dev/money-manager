@@ -11,4 +11,4 @@ const transactionSchema = new Schema({
 const transaction =
   mongoose.model.transaction ||
   mongoose.model("transaction", transactionSchema, "transactions");
-export default Transactions;
+export default transaction;

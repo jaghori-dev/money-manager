@@ -1,11 +1,11 @@
 import dbConnect from "@/db/connect";
-import Transaction from "@/db/model/transaction";
+import transaction from "@/db/model/transaction";
 
 export default async function handler(request, response) {
   await dbConnect();
   if (request.method === "GET") {
     try {
-      const transactions = await Transaction.find();
+      const transactions = await transaction.find();
       response.status(200).json(transactions);
       return;
     } catch (error) {
