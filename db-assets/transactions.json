@@ -1,0 +1,92 @@
+[
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d653"
+    },
+    "title": "Food",
+    "amount": -50.75,
+    "category": "Groceries",
+    "date": "2024-07-01T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d654"
+    },
+    "title": "Rent for Home",
+    "amount": -1200,
+    "category": "Rent",
+    "date": "2024-07-02T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d655"
+    },
+    "title": "Salary",
+    "amount": 1500,
+    "category": "Salary",
+    "date": "2024-07-03T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d656"
+    },
+    "title": "Lend some money",
+    "amount": -200.5,
+    "category": "Miscellaneous",
+    "date": "2024-07-04T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d657"
+    },
+    "title": "Going out",
+    "amount": -75.25,
+    "category": "Entertainment",
+    "date": "2024-07-05T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d658"
+    },
+    "title": "Doctor 13.2.",
+    "amount": -60,
+    "category": "Health",
+    "date": "2024-07-06T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d659"
+    },
+    "title": "ETF Dividend",
+    "amount": 500,
+    "category": "Investment",
+    "date": "2024-07-07T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d65a"
+    },
+    "title": "Electricity",
+    "amount": -30,
+    "category": "Utilities",
+    "date": "2024-07-08T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d65b"
+    },
+    "title": "Books",
+    "amount": -100,
+    "category": "Education",
+    "date": "2024-07-09T00:00:00"
+  },
+  {
+    "_id": {
+      "$oid": "6822f1fa565fb7dec523d65c"
+    },
+    "title": "Stocks",
+    "amount": 200,
+    "category": "Investment",
+    "date": "2024-07-10T00:00:00"
+  }
+]
