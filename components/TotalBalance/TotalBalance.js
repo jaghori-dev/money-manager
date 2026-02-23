@@ -8,7 +8,6 @@ export default function TotalBalance({ transactions }) {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(amount);
-
     return formatted;
   }
 
@@ -18,18 +17,7 @@ export default function TotalBalance({ transactions }) {
     return "neutral";
   }
 
-  if (!transactions || transactions.length === 0) {
-    const balance = 0;
-    const balanceType = getBalanceType(balance);
-    return (
-      <BalanceCard balanceType={balanceType}>
-        <BalanceLabel>Total Balance</BalanceLabel>
-        <BalanceValue>{formatCurrency(balance)}</BalanceValue>
-      </BalanceCard>
-    );
-  }
-
-  const balance = transactions.reduce((sum, transaction) => {
+  const balance = (transactions ?? []).reduce((sum, transaction) => {
     const newSum = sum + transaction.amount;
     return newSum;
   }, 0);
