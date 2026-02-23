@@ -12,5 +12,15 @@ export default async function handler(request, response) {
       return response.status(400).json(error.message);
     }
   }
+  if(request.method === 'POST'){
+    const newTransaction = request.body
+    try{
+      await Transaction.create(newTransaction)
+      response.status(201).json({status: "Transaction created"})
+    }catch(error){
+      console.error(error)
+      response.status(400).json({status: error.message})
+    }
+  }
   return response.status(405).json({ status: "Method not allowed" });
 }
