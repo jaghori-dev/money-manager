@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TransactionsForm from "@/components/TransactionForm/TransactionsForm";
 import useSWR from "swr";
 
-export default function newTransaction() {
+export default function NewTransaction() {
   const { mutate } = useSWR("/api/transactions");
 
   async function handleSubmit(event) {
