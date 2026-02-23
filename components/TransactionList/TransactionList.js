@@ -20,4 +20,16 @@ const StyledList = styled.ul`
   gap: 20px;
   max-height: 70vh;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--scroll-bar-background);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--item-background);
+    border-radius: 4px;
+    border: 2px solid var(--scroll-bar-background);
+  }
 `;
