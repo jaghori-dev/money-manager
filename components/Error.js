@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export default function Error({ message, onRetry }) {
   return (
     <Wrapper>
@@ -11,8 +13,6 @@ export default function Error({ message, onRetry }) {
     </Wrapper>
   );
 }
-
-import styled from "styled-components";
 
 const Wrapper = styled.div`
   background-color: var(--text-color);
@@ -48,14 +48,11 @@ const Message = styled.p`
 const RetryButton = styled.button`
   background: var(--error-button-color);
   color: var(--main-color);
-
   border: none;
   padding: 10px 18px;
   border-radius: 8px;
-
   cursor: pointer;
   font-size: 14px;
-
   transition: all 0.2s ease;
 
   &:hover {

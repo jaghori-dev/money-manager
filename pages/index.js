@@ -1,9 +1,10 @@
 import TransactionList from "@/components/TransactionList/TransactionList";
-import Error from "@/components/TransactionList/Error";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 import styled from "styled-components";
 
 export default function HomePage({ transactions, error, isLoading }) {
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loading />;
   if (error) {
     return (
       <Error

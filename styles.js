@@ -19,6 +19,8 @@ export default createGlobalStyle`
     --error-button-color: #e11d48;
     --error-hover-button-color: #be123c;
 
+    --loading-bg-color: rgba(0, 0, 0, 0.5);
+  
   }
 
   *,
