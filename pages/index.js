@@ -6,15 +6,32 @@ export default function HomePage({ transactions, error, isLoading }) {
   if (error) return <p>error</p>;
   if (!transactions) return <h1>somthing went wrong</h1>;
   return (
-    <div>
-      <h1>Money Manager App</h1>
+    <Container>
+      <Title>Money Manager App</Title>
       <TransactionList transactions={transactions} />
-    </div>
+    </Container>
   );
 }
+
 const Container = styled.div`
   min-height: 100vh;
-  background-color: #0f0f0f;
+  background-color: var(--background-color);
   padding: 40px 20px;
   color: white;
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: 600px) {
+    padding: 20px 10px;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
 `;
