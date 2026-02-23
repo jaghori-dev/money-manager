@@ -1,13 +1,20 @@
 import TransactionList from "@/components/TransactionList/TransactionList";
+import TotalBalance from "@/components/TotalBalance/TotalBalance";
 import styled from "styled-components";
 
 export default function HomePage({ transactions, error, isLoading }) {
+  console.log("HomePage render", { transactions, error, isLoading });
+
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>error</p>;
   if (!transactions) return <h1>somthing went wrong</h1>;
+
   return (
     <Container>
       <Title>Money Manager App</Title>
+
+      <TotalBalance transactions={transactions} />
+
       <TransactionList transactions={transactions} />
     </Container>
   );
