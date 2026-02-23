@@ -13,6 +13,8 @@ export default function HomePage({ transactions, error, isLoading }) {
   );
 }
 const Container = styled.div`
-  background-color: black;
-  padding: 10px;
+  min-height: 100vh;
+  background-color: #0f0f0f;
+  padding: 40px 20px;
+  color: white;
 `;

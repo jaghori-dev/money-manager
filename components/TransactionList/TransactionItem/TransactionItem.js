@@ -1,10 +1,17 @@
 export default function TransactionItem({ transaction }) {
+  const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
+    weekday: "short",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
   return (
     <li>
+      <p>{transaction.category}</p>
       <strong>{transaction.title}</strong>
-      <p>Category: {transaction.category}</p>
-      <p>Amount: {transaction.amount}</p>
-      <p>Date: {new Date(transaction.date).toLocaleDateString()}</p>
+      <p>{transaction.amount}</p>
+      <p>{formattedDate}</p>
     </li>
   );
 }
