@@ -10,11 +10,11 @@
 
 ## Description
 
-Capstone Group Todo: Add wireframes
+<img width="328" height="209" alt="Image" src="https://github.com/user-attachments/assets/7528d889-9eba-4a92-bbf7-1b10f5281a08" />
 
 ## Acceptance Criteria
 
-- Each transaction in the transactions list includes an easily accessible delete option.
+- Each transaction in the details page includes delete option.
 - Clicking the delete option triggers a confirmation dialog.
 - The dialog serves to prevent accidental deletions by asking the user to confirm their intention.
 - The dialog includes options for both confirming the deletion and cancelling the action.
@@ -25,4 +25,16 @@ Capstone Group Todo: Add wireframes
 ## Tasks
 
 - [ ] Create feature branch `feature/delete-transaction`
-- [ ] Capstone Group Todo: Add tasks
+- [ ] Add a Delete button to the transaction detail view
+- [ ] Implement a confirmation modal component
+- [ ] Open the confirmation modal on Delete button click
+- [ ] Close the modal when clicking “No”
+- [ ] Implement handleDelete function
+- [ ] Send a DELETE request to /api/transactions/:id
+- [ ] Handle successful API response
+- [ ] Remove the deleted transaction from the UI:
+- [ ] using mutate() if useSWR
+- [ ] Re-render the updated transaction list immediately
+- [ ] Handle API error state (show error message)
+- [ ] Display success message after successful deletion
+- [ ] Implement empty-state message if no transactions remain
