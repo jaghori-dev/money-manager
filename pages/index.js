@@ -1,3 +1,4 @@
+import TransactionList from "@/components/TransactionList/TransactionList";
 import styled from "styled-components";
 
 export default function HomePage({ transactions, error, isLoading }) {
@@ -7,18 +8,7 @@ export default function HomePage({ transactions, error, isLoading }) {
   return (
     <div>
       <h1>Money Manager App</h1>
-      <ul>
-        {transactions.map((transaction) => {
-          return (
-            <li key={transaction._id}>
-              {transaction.title}
-              <p>{transaction.category}</p>
-              <p>{transaction.amount}</p>
-              <p>{transaction.date}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <TransactionList transactions={transactions} />
     </div>
   );
 }
