@@ -1,5 +1,5 @@
 import dbConnect from "@/db/connect";
-import Transaction from "@/db/models/transaction";
+import Transaction from "@/db/models/Transaction";
 
 export default async function handler(request, response) {
   await dbConnect();
