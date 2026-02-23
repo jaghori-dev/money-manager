@@ -9,6 +9,12 @@ export default function newTransaction() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const newTransaction = Object.fromEntries(formData);
+    let rawAmount = newTransaction.amount.replace(",", ".");
+    let amount = Math.abs(Number(rawAmount));
+    if (newTransaction.type === "expense") {
+      amount = -amount;
+    }
+    newTransaction.amount = amount;
 
     const response = await fetch("/api/transactions", {
       method: "POST",
