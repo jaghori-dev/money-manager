@@ -4,7 +4,6 @@ export default function HomePage({ transactions, error, isLoading }) {
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>error</p>;
   if (!transactions) return <h1>somthing went wrong</h1>;
-  console.log(transactions);
   return (
     <div>
       <h1>Money Manager App</h1>
