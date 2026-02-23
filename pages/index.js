@@ -1,4 +1,5 @@
 import TransactionList from "@/components/TransactionList/TransactionList";
+import TotalBalance from "@/components/TotalBalance/TotalBalance";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import styled from "styled-components";
@@ -14,9 +15,13 @@ export default function HomePage({ transactions, error, isLoading }) {
     );
   }
   if (!transactions) return <h1>somthing went wrong</h1>;
+
   return (
     <Container>
       <Title>Money Manager App</Title>
+
+      <TotalBalance transactions={transactions} />
+
       <TransactionList transactions={transactions} />
     </Container>
   );
