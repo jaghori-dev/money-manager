@@ -1,5 +1,5 @@
 import dbConnect from "@/db/connect";
-import Transaction from "@/db/model/Transaction";
+import Transaction from "@/db/models/Transaction";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -12,5 +12,5 @@ export default async function handler(request, response) {
       return response.status(400).json(error.message);
     }
   }
-  return res.status(400).json({ status: "Method not allowed" });
+  return response.status(405).json({ status: "Method not allowed" });
 }
