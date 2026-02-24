@@ -1,7 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
 import createGlobalStyle from "styled-components";
+import Link from "next/link";
 
 export default function TransactionItem({ transaction }) {
+  const [isDetails, setIsDetails] = useState(false);
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
     weekday: "short",
     day: "2-digit",
@@ -15,15 +18,18 @@ export default function TransactionItem({ transaction }) {
 
   return (
     <Card>
-      <TopRow>
-        <Category>{transaction.category}</Category>
-        <StyledDate>{formattedDate}</StyledDate>
-      </TopRow>
-
-      <BottomRow>
-        <Title>{transaction.title}</Title>
-        <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
-      </BottomRow>
+      {isDetails && (
+        <TopRow>
+          <Category>{transaction.category}</Category>
+          <StyledDate>{formattedDate}</StyledDate>
+        </TopRow>
+      )}
+      <Link href={transaction._id} onClick={()=>setIsDetails(true)}>
+        <BottomRow>
+          <Title>{transaction.title}</Title>
+          <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
+        </BottomRow>
+      </Link>
     </Card>
   );
 }

@@ -1,5 +1,6 @@
 import TransactionItem from "./TransactionItem/TransactionItem";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function TransactionList({ transactions }) {
   return (

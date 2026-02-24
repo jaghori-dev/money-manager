@@ -68,6 +68,7 @@ export const StyledForm = styled.form`
   gap: 5px;
   width: 80%;
   margin: auto;
+  color: var(--main-color)
 `;
 export const StyledHeading = styled.h2`
   text-align: center;
