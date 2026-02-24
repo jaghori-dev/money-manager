@@ -5,7 +5,7 @@ const today = new Date().toISOString().split("T")[0];
 
 export default function TransactionForm({
   formTitle,
-  amountDefaultValue,
+  defaultValues,
   buttonText,
   onSubmit,
 }) {
@@ -22,13 +22,18 @@ export default function TransactionForm({
       <StyledForm onSubmit={onSubmit}>
         <StyledHeading>{formTitle}</StyledHeading>
         <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
-        <Input type="text" name="title" id="title" />
+        <Input
+          type="text"
+          name="title"
+          id="title"
+          defaultValue={defaultValues?.title}
+        />
         <StyledLabel htmlFor="amount">Amount:</StyledLabel>
         <Input
           type="number"
           id="amount"
           name="amount"
-          defaultValue={amountDefaultValue}
+          defaultValue={defaultValues?.amount}
         />
         <Select id="category" name="category" defaultValue="category" required>
           {categories.map((category) => {
@@ -40,8 +45,14 @@ export default function TransactionForm({
           })}
         </Select>
         <StyledLabel htmlFor="date">Date:</StyledLabel>
-        <Input type="date" name="date" id="date" defaultValue= {today} />
-
+        <Input
+          type="date"
+          name="date"
+          id="date"
+          defaultValue={
+            defaultValues?.date ? new Date().toISOString().split("T")[0] : today
+          }
+        />
         <Button>{buttonText}</Button>
       </StyledForm>
     </FormWrapper>
@@ -68,7 +79,7 @@ export const StyledForm = styled.form`
   gap: 5px;
   width: 80%;
   margin: auto;
-  color: var(--main-color)
+  color: var(--main-color);
 `;
 export const StyledHeading = styled.h2`
   text-align: center;
