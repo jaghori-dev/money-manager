@@ -6,7 +6,9 @@ export default function TransactionList({ transactions }) {
   return (
     <StyledList>
       {transactions.map((transaction) => (
-        <TransactionItem key={transaction._id} transaction={transaction} />
+        <Link key={transaction._id} href={transaction._id}>
+          <TransactionItem key={transaction._id} transaction={transaction} />
+        </Link>
       ))}
     </StyledList>
   );
