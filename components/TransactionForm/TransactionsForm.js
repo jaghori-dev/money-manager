@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useSWR from "swr";
 const fetcher = (url) => fetch(url).then((res) => res.json());
-
+const today = new Date().toISOString().split("T")[0];
 export default function TransactionForm({
   formTitle,
   amountDefaultValue,
@@ -39,7 +39,7 @@ export default function TransactionForm({
           })}
         </Select>
         <StyledLabel htmlFor="date">Date:</StyledLabel>
-        <Input type="date" name="date" id="date" defaultValue="" />
+        <Input type="date" name="date" id="date" defaultValue= {today} />
 
         <Button>{buttonText}</Button>
       </StyledForm>
