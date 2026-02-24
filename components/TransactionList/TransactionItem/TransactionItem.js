@@ -1,15 +1,17 @@
-import { useState } from "react";
 import styled from "styled-components";
 import createGlobalStyle from "styled-components";
-import Link from "next/link";
+import { X } from "lucide-react";
+import DeleteConfirmModal from "@/components/DeleteConfirmation";
+import { useState } from "react";
 
 export default function TransactionItem({
   transaction,
-  Children,
   isDetails = false,
-  isEdit,
+  onEdit,
   onClick,
+  onConfirm
 }) {
+  const [showConfirm, setShowConfirm] = useState(false);
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
     weekday: "short",
     day: "2-digit",
@@ -20,7 +22,9 @@ export default function TransactionItem({
     style: "currency",
     currency: "EUR",
   }).format(transaction.amount);
-
+  function toggleDeleteConfir() {
+    setShowConfirm((prev) => !prev);
+  }
   return (
     <Card>
       <Row>
@@ -29,21 +33,35 @@ export default function TransactionItem({
       </Row>
       {isDetails && (
         <Details>
+          <DeleteIcon onClick={toggleDeleteConfir} />
+          {showConfirm && <DeleteConfirmModal onCancel={toggleDeleteConfir} onConfirm={onConfirm}/>}
           <Row>
             <Title>{transaction.category}</Title>
             <StyledDate>{formattedDate}</StyledDate>
           </Row>
-          <Button onClick={onClick}>{isEdit ? "Cancel" : "Edit"}</Button>
+          <Button onClick={onClick}>{onEdit ? "Cancel" : "Edit"}</Button>
         </Details>
       )}
     </Card>
   );
 }
 
+const DeleteIcon = styled(X)`
+  size:;
+  color: red;
+  padding: px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  background-color: white;
+  border-radius: var(--radius-full);
+`;
 const Card = styled.div`
   background: var(--item-background);
   color: var(--text-color);
   padding: 20px;
+  position: relative;
   border-radius: var(--radius-m);
   box-shadow: 0 10px 30px var(--shadow-color);
   transition:
@@ -85,6 +103,7 @@ const Button = styled.button`
   border: none;
   min-width: 60px;
   margin: auto;
+  cursor: pointer;
 `;
 const StyledDate = styled.span`
   font-size: 13px;

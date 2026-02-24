@@ -5,7 +5,6 @@ export default function DeleteConfirmModal({ onConfirm, onCancel }) {
     <Overlay>
       <Modal>
         <p>Are you sure you want to delete this transaction?</p>
-
         <ButtonGroup>
           <CancelButton onClick={onCancel}>Cancel</CancelButton>
           <DeleteButton onClick={onConfirm}>Delete</DeleteButton>
