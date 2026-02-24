@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useSWR from "swr";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
+
 export default function TransactionForm({
   formTitle,
   amountDefaultValue,
@@ -30,9 +31,9 @@ export default function TransactionForm({
           defaultValue={amountDefaultValue}
         />
         <Select id="category" name="category" defaultValue="category" required>
-          {categories.map((category, index) => {
+          {categories.map((category) => {
             return (
-              <option key={index} value={category.category}>
+              <option key={category._id} value={category.category}>
                 {category.category}
               </option>
             );

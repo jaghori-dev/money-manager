@@ -16,7 +16,6 @@ export default function App({ Component, pageProps }) {
         transactions={transactions}
         error={error}
         isLoading={isLoading}
-        fetcher={fetcher}
       />
     </>
   );
