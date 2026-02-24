@@ -3,8 +3,7 @@ import styled from "styled-components";
 import createGlobalStyle from "styled-components";
 import Link from "next/link";
 
-export default function TransactionItem({ transaction }) {
-  const [isDetails, setIsDetails] = useState(false);
+export default function TransactionItem({ transaction, isDetails = false }) {
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
     weekday: "short",
     day: "2-digit",
@@ -18,17 +17,16 @@ export default function TransactionItem({ transaction }) {
 
   return (
     <Card>
+      <TopRow>
+        <Title>{transaction.title}</Title>
+        <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
+      </TopRow>
       {isDetails && (
-        <TopRow>
-          <Category>{transaction.category}</Category>
-          <StyledDate>{formattedDate}</StyledDate>
-        </TopRow>
-      )}
-      
         <BottomRow>
-          <Title>{transaction.title}</Title>
-          <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
+          <Title>{transaction.category}</Title>
+          <StyledDate>{formattedDate}</StyledDate>
         </BottomRow>
+      )}
     </Card>
   );
 }
@@ -52,15 +50,14 @@ const Card = styled.li`
 const TopRow = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
-  opacity: 0.9;
+  align-items: center;
 `;
-
 const BottomRow = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  font-size: 14px;
+  opacity: 0.9;
 `;
 
 const Title = styled.h2`
@@ -74,7 +71,7 @@ const Title = styled.h2`
   }
 `;
 
-const Category = styled.span`
+const Span = styled.span`
   font-weight: 500;
   color: var(--primary-color);
 `;
