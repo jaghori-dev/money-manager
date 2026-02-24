@@ -10,7 +10,10 @@ export default createGlobalStyle`
     --primary-color: #373737;
     --income-color: #026300;
     --expenses-color: #970c0c;
-
+    --radius-s: 12px;
+    --radius-m: 20px;
+    --radius-l: 50px;
+    --radius-full: 100px;
   }
 
   *,
