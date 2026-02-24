@@ -9,6 +9,7 @@ export default async function handler(request, response) {
       response.status(200).json(transactions);
       return;
     } catch (error) {
+      console.error(error)
       return response.status(400).json(error.message);
     }
   }
@@ -17,9 +18,11 @@ export default async function handler(request, response) {
     try{
       await Transaction.create(newTransaction)
       response.status(201).json({status: "Transaction created"})
+      return
     }catch(error){
       console.error(error)
       response.status(400).json({status: error.message})
+      return
     }
   }
   return response.status(405).json({ status: "Method not allowed" });

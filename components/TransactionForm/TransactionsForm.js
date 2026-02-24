@@ -1,10 +1,18 @@
 import styled from "styled-components";
+import useSWR from "swr";
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 export default function TransactionForm({
   formTitle,
   amountDefaultValue,
   buttonText,
   onSubmit,
 }) {
+  const { data, error, isLoading } = useSWR("/api/categories", fetcher);
+  if (isLoading) return <h1>Loading...</h1>;
+  if (error) return <p>error</p>;
+  if (!data) return <h1>somthing went wrong</h1>;
+  console.log(data);
   return (
     <FormWrapper>
       <StyledForm onSubmit={onSubmit}>
