@@ -10,13 +10,6 @@ export default function NewTransaction() {
     const formData = new FormData(event.target);
     const newTransaction = Object.fromEntries(formData);
 
-    // let rawAmount = newTransaction.amount.replace(",", ".");
-    // let amount = Math.abs(Number(rawAmount));
-    // if (newTransaction.type === "expense") {
-    //   amount = -amount;
-    // }
-    // newTransaction.amount = amount;
-
     const response = await fetch("/api/transactions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,16 +23,10 @@ export default function NewTransaction() {
     event.target.reset();
   }
   return (
-    <Container>
-      <TransactionsForm
-        onSubmit={handleSubmit}
-        formTitle="Add new transaction"
-        buttonText="Save transaction"
-      />
-    </Container>
+    <TransactionsForm
+      onSubmit={handleSubmit}
+      formTitle="Add new transaction"
+      buttonText="Save transaction"
+    />
   );
 }
-
-const Container = styled.div`
-  color: white;
-`;
