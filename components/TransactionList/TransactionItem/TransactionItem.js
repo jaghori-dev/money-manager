@@ -24,12 +24,11 @@ export default function TransactionItem({ transaction }) {
           <StyledDate>{formattedDate}</StyledDate>
         </TopRow>
       )}
-      <Link href={transaction._id} onClick={()=>setIsDetails(true)}>
+      
         <BottomRow>
           <Title>{transaction.title}</Title>
           <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
         </BottomRow>
-      </Link>
     </Card>
   );
 }
