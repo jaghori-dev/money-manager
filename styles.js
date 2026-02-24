@@ -37,5 +37,6 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
     background-color: var(--background-color);
+    padding-bottom: 50px;
   }
 `;

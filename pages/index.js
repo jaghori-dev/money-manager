@@ -20,9 +20,7 @@ export default function HomePage({ transactions, error, isLoading }) {
   return (
     <Container>
       <Title>Money Manager App</Title>
-
       <TotalBalance transactions={transactions} />
-
       <TransactionList transactions={transactions} />
       <Navigation />
     </Container>

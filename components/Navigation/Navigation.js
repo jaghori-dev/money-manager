@@ -1,4 +1,10 @@
-import { House, CirclePlus, CircleDollarSign } from "lucide-react";
+import {
+  House,
+  CirclePlus,
+  ChartLine,
+  User,
+  ArrowLeftRight,
+} from "lucide-react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,14 +22,26 @@ export default function Navigation() {
     },
     {
       path: "/",
-      label: "Add",
+      label: "Transactions",
+      icon: ArrowLeftRight,
+      size: 25,
+    },
+    {
+      path: "/",
+      label: "New Transaction",
       icon: CirclePlus,
       size: 25,
     },
     {
       path: "/",
-      label: "Change",
-      icon: CircleDollarSign,
+      label: "Analytics",
+      icon: ChartLine,
+      size: 25,
+    },
+    {
+      path: "/",
+      label: "Profile",
+      icon: User,
       size: 25,
     },
   ];
@@ -38,6 +56,7 @@ export default function Navigation() {
             active={currentPath === item.path}
           >
             <Icon size={item.size} />
+            <StyledLabel>{item.label}</StyledLabel>
           </StyledLink>
         );
       })}
@@ -47,7 +66,7 @@ export default function Navigation() {
 
 const Wrapper = styled.nav`
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 70vw;
@@ -56,7 +75,6 @@ const Wrapper = styled.nav`
   justify-content: space-around;
   gap: 30px;
   padding: 14px 28px;
-  width: 2fr;
   background: var(--nav-bg-color);
   backdrop-filter: blur(20px);
   border-radius: 40px;
@@ -76,4 +94,11 @@ const StyledLink = styled(Link)`
   &:hover {
     color: var(--main-color);
   }
+`;
+
+const StyledLabel = styled.span`
+  font-size: 12px;
+  color: ${(props) =>
+    props.$active ? "var(--main-color)" : "var(--nav-icons-color)"};
+  text-align: center;
 `;
