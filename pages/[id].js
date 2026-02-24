@@ -42,7 +42,12 @@ export default function Details() {
     setOnEdit((prev) => !prev);
   }
   async function handleDelet() {
-    
+    const response = await fetch(`/api/transactions/${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      router.push("/");
+    }
   }
   return (
     <div>
