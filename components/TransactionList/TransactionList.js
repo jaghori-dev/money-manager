@@ -1,7 +1,13 @@
 import TransactionItem from "./TransactionItem/TransactionItem";
 import styled from "styled-components";
 
-export default function TransactionList({ transactions }) {
+export default function TransactionList({
+  transactions,
+  emptyMessage = "No transactions found",
+}) {
+  if (!transactions) {
+    return <h2>{emptyMessage}</h2>;
+  }
   return (
     <StyledList>
       {transactions.map((transaction) => (
