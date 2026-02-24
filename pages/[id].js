@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import TransactionItem from "@/components/TransactionList/TransactionItem/TransactionItem";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import TransactionForm from "@/components/TransactionForm/TransactionsForm";
 import { useState } from "react";
 
@@ -23,16 +23,31 @@ export default function Details() {
   if (!transaction) return <h2>transaction not found</h2>;
 
   console.log(transaction);
-  function handleDelet(event) {
-    event.preventDefault();
+  function toggleEdit() {
     setIsEdit((prev) => !prev);
+  }
+  async function handleUpdate(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const updateTransaction = Object.fromEntries(formData);
+    const response = await fetch(`/api/transactions/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateTransaction),
+    });
+    if (response.ok) {
+      mutate(`/api/transactions/${id}`);
+    }
+    console.log(updateTransaction);
   }
   return (
     <div>
       <TransactionItem
         transaction={transaction}
         isDetails={true}
-        onClick={handleDelet}
+        onClick={toggleEdit}
         isEdit={isEdit}
       >
         hello
@@ -41,10 +56,9 @@ export default function Details() {
         <TransactionForm
           defaultValues={transaction}
           buttonText="Update transaction"
-          onSubmit={handleDelet}
+          onSubmit={handleUpdate}
         />
       )}
     </div>
   );
 }
-
