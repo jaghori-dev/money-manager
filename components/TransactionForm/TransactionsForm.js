@@ -8,11 +8,14 @@ export default function TransactionForm({
   buttonText,
   onSubmit,
 }) {
-  const { data, error, isLoading } = useSWR("/api/categories", fetcher);
+  const {
+    data: categories,
+    error,
+    isLoading,
+  } = useSWR("/api/categories", fetcher);
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>error</p>;
-  if (!data) return <h1>somthing went wrong</h1>;
-  console.log(data);
+  if (!categories) return <h1>somthing went wrong</h1>;
   return (
     <FormWrapper>
       <StyledForm onSubmit={onSubmit}>
@@ -27,18 +30,13 @@ export default function TransactionForm({
           defaultValue={amountDefaultValue}
         />
         <Select id="category" name="category" defaultValue="category" required>
-          <option value="Education">Education</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Groceries">Groceries</option>
-          <option value="Health">Health</option>
-          <option value="Insurance">Insurance</option>
-          <option value="Miscellaneous">Miscellaneous</option>
-          <option value="Rent">Rent</option>
-          <option value="Restaurants">Restaurants</option>
-          <option value="Salary">Salary</option>
-          <option value="Savings">Savings</option>
-          <option value="Transportation">Transportation</option>
-          <option value="Utilities">Utilities</option>
+          {categories.map((category, index) => {
+            return (
+              <option key={index} value={category.category}>
+                {category.category}
+              </option>
+            );
+          })}
         </Select>
         <StyledLabel htmlFor="date">Date:</StyledLabel>
         <Input type="date" name="date" id="date" defaultValue="" />
