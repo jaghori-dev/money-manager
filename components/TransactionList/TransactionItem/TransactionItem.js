@@ -3,7 +3,10 @@ import styled from "styled-components";
 import createGlobalStyle from "styled-components";
 import Link from "next/link";
 
-export default function TransactionItem({ transaction, isDetails = false }) {
+export default function TransactionItem({
+  transaction,
+  isDetails = false,
+}) {
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
     weekday: "short",
     day: "2-digit",

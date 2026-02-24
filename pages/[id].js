@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import TransactionItem from "@/components/TransactionList/TransactionItem/TransactionItem";
 import useSWR from "swr";
+import TransactionForm from "@/components/TransactionForm/TransactionsForm";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function Details() {
@@ -19,6 +20,11 @@ export default function Details() {
   }
   if (!transaction) return <h2>transaction not found</h2>;
 
-
-  return <TransactionItem transaction={transaction} isDetails={true} />;
+  console.log(transaction)
+  return (
+    <>
+    <TransactionItem transaction={transaction} isDetails={true} isEditing={true} />
+    <TransactionForm formTitle='Edit transaction' buttonText='Update transaction' defaultValues={transaction}/>
+    </>
+  );
 }
