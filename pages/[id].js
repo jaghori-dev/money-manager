@@ -22,7 +22,6 @@ export default function Details() {
   if (error) return <p>Error loading transaction</p>;
   if (!transaction) return <h2>transaction not found</h2>;
 
-  console.log(transaction);
   function toggleEdit() {
     setIsEdit((prev) => !prev);
   }
@@ -40,7 +39,7 @@ export default function Details() {
     if (response.ok) {
       mutate(`/api/transactions/${id}`);
     }
-    console.log(updateTransaction);
+    setIsEdit((prev) => !prev);
   }
   return (
     <div>
