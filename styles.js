@@ -8,12 +8,23 @@ export default createGlobalStyle`
     --text-color: #000000;
     --second-text-color: white;
     --primary-color: #373737;
+    --main-color: #ffff;
     --income-color: #026300;
     --expenses-color: #970c0c;
     --radius-s: 12px;
     --radius-m: 20px;
     --radius-l: 50px;
     --radius-full: 100px;
+
+    --scroll-bar-background: #1a1a1a;
+
+    --error-background-color: #111;
+    --error-text-color: #ccc;
+    --error-button-color: #e11d48;
+    --error-hover-button-color: #be123c;
+
+    --loading-bg-color: rgba(0, 0, 0, 0.5);
+  
   }
 
   *,

@@ -1,13 +1,27 @@
 import TransactionList from "@/components/TransactionList/TransactionList";
+import TotalBalance from "@/components/TotalBalance/TotalBalance";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 import styled from "styled-components";
 
 export default function HomePage({ transactions, error, isLoading }) {
-  if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <p>error</p>;
+  if (isLoading) return <Loading />;
+  if (error) {
+    return (
+      <Error
+        message="Unable to load data😿 Please try again."
+        onRetry={() => window.location.reload()}
+      />
+    );
+  }
   if (!transactions) return <h1>somthing went wrong</h1>;
+
   return (
     <Container>
       <Title>Money Manager App</Title>
+
+      <TotalBalance transactions={transactions} />
+
       <TransactionList transactions={transactions} />
     </Container>
   );
@@ -17,7 +31,7 @@ const Container = styled.div`
   min-height: 100vh;
   background-color: var(--background-color);
   padding: 40px 20px;
-  color: white;
+  color: var(--main-color);
   max-width: 800px;
   margin: 0 auto;
 
