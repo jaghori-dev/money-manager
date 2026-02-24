@@ -24,6 +24,10 @@ export default createGlobalStyle`
     --error-hover-button-color: #be123c;
 
     --loading-bg-color: rgba(0, 0, 0, 0.5);
+
+    --search-bg-color: rgba(200, 200, 200, 0.2);
+    --search-focus-bg: rgba(200, 200, 200, 0.3);
+    --search-focus-shadow: rgba(150, 150, 150, 0.6)
   
   }
 

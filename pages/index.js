@@ -3,8 +3,12 @@ import TotalBalance from "@/components/TotalBalance/TotalBalance";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import styled from "styled-components";
+import SearchTransactions from "@/components/Search Transactions/Search Transactions";
+import { useState } from "react";
 
 export default function HomePage({ transactions, error, isLoading }) {
+  const [searchTransaction, setSearchTransaction] = useState("");
+
   if (isLoading) return <Loading />;
   if (error) {
     return (
@@ -19,9 +23,11 @@ export default function HomePage({ transactions, error, isLoading }) {
   return (
     <Container>
       <Title>Money Manager App</Title>
-
       <TotalBalance transactions={transactions} />
-
+      <SearchTransactions
+        search={searchTransaction}
+        setSearch={setSearchTransaction}
+      />
       <TransactionList transactions={transactions} />
     </Container>
   );
