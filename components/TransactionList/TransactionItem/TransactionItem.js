@@ -5,7 +5,10 @@ import Link from "next/link";
 
 export default function TransactionItem({
   transaction,
+  Children,
   isDetails = false,
+  isEdit,
+  onClick,
 }) {
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
     weekday: "short",
@@ -20,25 +23,28 @@ export default function TransactionItem({
 
   return (
     <Card>
-      <TopRow>
+      <Row>
         <Title>{transaction.title}</Title>
         <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
-      </TopRow>
+      </Row>
       {isDetails && (
-        <BottomRow>
-          <Title>{transaction.category}</Title>
-          <StyledDate>{formattedDate}</StyledDate>
-        </BottomRow>
+        <Details>
+          <Row>
+            <Title>{transaction.category}</Title>
+            <StyledDate>{formattedDate}</StyledDate>
+          </Row>
+          <Button onClick={onClick}>{isEdit ? "Cancel" : "Edit"}</Button>
+        </Details>
       )}
     </Card>
   );
 }
 
-const Card = styled.li`
+const Card = styled.div`
   background: var(--item-background);
   color: var(--text-color);
   padding: 20px;
-  border-radius: 20px;
+  border-radius: var(--radius-m);
   box-shadow: 0 10px 30px var(--shadow-color);
   transition:
     transform 0.2s ease,
@@ -50,35 +56,36 @@ const Card = styled.li`
   }
 `;
 
-const TopRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const BottomRow = styled.div`
+const Row = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   opacity: 0.9;
 `;
-
+const Details = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items:center:
+  justify-content:center;
+  gap:10px;
+  `;
 const Title = styled.h2`
   font-size: 20px;
   font-weight: 600;
   margin: 0;
   transition: color 0.3s ease;
-
   &:hover {
     color: var(--primary-color);
   }
 `;
-
-const Span = styled.span`
-  font-weight: 500;
-  color: var(--primary-color);
+const Button = styled.button`
+  padding: 10px 20px;
+  border-radius: var(--radius-s);
+  border: none;
+  min-width: 60px;
+  margin: auto;
 `;
-
 const StyledDate = styled.span`
   font-size: 13px;
   color: var(--primary-color);
