@@ -5,6 +5,7 @@ import Loading from "@/components/Loading";
 import styled from "styled-components";
 import SearchTransactions from "@/components/Search Transactions/Search Transactions";
 import { useState } from "react";
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function HomePage({ transactions, error, isLoading }) {
   const [searchTransaction, setSearchTransaction] = useState("");
@@ -29,6 +30,7 @@ export default function HomePage({ transactions, error, isLoading }) {
         setSearch={setSearchTransaction}
       />
       <TransactionList transactions={transactions} />
+      <Navigation />
     </Container>
   );
 }

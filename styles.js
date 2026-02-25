@@ -25,9 +25,15 @@ export default createGlobalStyle`
 
     --loading-bg-color: rgba(0, 0, 0, 0.5);
 
+<<<<<<< HEAD
     --search-bg-color: rgba(200, 200, 200, 0.2);
     --search-focus-bg: rgba(200, 200, 200, 0.3);
     --search-focus-shadow: rgba(150, 150, 150, 0.6)
+=======
+    --nav-bg-color: rgba(20, 20, 20, 0.7);
+    --nav-border-color: rgba(255, 255, 255, 0.08);
+    --nav-icons-color: #aaa;
+>>>>>>> main
   
   }
 
@@ -41,5 +47,6 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
     background-color: var(--background-color);
+    padding-bottom: 50px;
   }
 `;
