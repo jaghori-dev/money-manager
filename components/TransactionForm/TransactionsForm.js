@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import useSWR from "swr";
+import { useState } from "react";
+import ReceiptInput from "../ReceiptInput/ReceiptInput";
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
 
@@ -9,6 +12,9 @@ export default function TransactionForm({
   buttonText,
   onSubmit,
 }) {
+  const [receiptFile, setReceiptFile] = useState(null);
+  console.log("receiptfile:", receiptFile);
+
   const {
     data: categories,
     error,
@@ -40,7 +46,9 @@ export default function TransactionForm({
           })}
         </Select>
         <StyledLabel htmlFor="date">Date:</StyledLabel>
-        <Input type="date" name="date" id="date" defaultValue= {today} />
+        <Input type="date" name="date" id="date" defaultValue={today} />
+
+        <ReceiptInput onFileSelect={setReceiptFile} />
 
         <Button>{buttonText}</Button>
       </StyledForm>
