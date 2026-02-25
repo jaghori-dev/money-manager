@@ -11,8 +11,6 @@ export default function ReceiptInput({ onFileSelect }) {
       return;
     }
 
-    console.log("Selected file:", file);
-
     const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     const maxSize = 4 * 1024 * 1024; // 4MB
 
@@ -39,7 +37,6 @@ export default function ReceiptInput({ onFileSelect }) {
     setError("");
     setSelectedFileName("");
     onFileSelect(null);
-    console.log("Receipt removed");
   }
 
   return (

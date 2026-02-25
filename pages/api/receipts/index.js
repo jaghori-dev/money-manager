@@ -62,9 +62,7 @@ export default async function handler(request, response) {
 
     try {
       fileSystem.unlinkSync(uploadedFile.filepath);
-    } catch (cleanupError) {
-      console.log("Temporary file cleanup failed:", cleanupError);
-    }
+    } catch (cleanupError) {}
 
     return response.status(200).json({
       receiptUrl: uploadResult.secure_url,

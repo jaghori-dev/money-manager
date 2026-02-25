@@ -26,16 +26,6 @@ export default function TransactionForm({
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    console.log("SUBMIT values:", {
-      title: event.target.title.value,
-      amount: event.target.amount.value,
-      category: event.target.category.value,
-      date: event.target.date.value,
-    });
-
-    console.log("SUBMIT receiptFile:", receiptFile);
-
     onSubmit(event, receiptFile);
   }
 

@@ -10,9 +10,6 @@ export default function NewTransaction() {
     const formData = new FormData(event.target);
     const transactionValues = Object.fromEntries(formData);
 
-    console.log("Transaction values:", transactionValues);
-    console.log("Receipt file:", receiptFile);
-
     let receiptUrl = "";
 
     if (receiptFile) {
@@ -31,8 +28,6 @@ export default function NewTransaction() {
 
       const uploadResult = await uploadResponse.json();
       receiptUrl = uploadResult.receiptUrl;
-
-      console.log("Uploaded Url:", receiptUrl);
     }
 
     const payload = { ...transactionValues, receiptUrl };
