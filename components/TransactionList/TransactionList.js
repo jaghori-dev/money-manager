@@ -6,9 +6,9 @@ export default function TransactionList({ transactions }) {
   return (
     <StyledList>
       {transactions.map((transaction) => (
-        <Link key={transaction._id} href={transaction._id}>
+        <StyledLink key={transaction._id} href={transaction._id}>
           <TransactionItem key={transaction._id} transaction={transaction} />
-        </Link>
+        </StyledLink>
       ))}
     </StyledList>
   );
@@ -35,4 +35,7 @@ const StyledList = styled.ul`
     border-radius: 4px;
     border: 2px solid var(--scroll-bar-background);
   }
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
