@@ -41,11 +41,12 @@ export default function Details() {
     }
     setOnEdit((prev) => !prev);
   }
-  async function handleDelet() {
+  async function handleDelete() {
     const response = await fetch(`/api/transactions/${id}`, {
       method: "DELETE",
     });
     if (response.ok) {
+      await mutate("/api/transactions");
       router.push("/");
     }
   }
@@ -56,7 +57,7 @@ export default function Details() {
         isDetails={true}
         onClick={toggleEdit}
         onEdit={onEdit}
-        onConfirm={handleDelet}
+        onConfirm={handleDelete}
       >
         hello
       </TransactionItem>
