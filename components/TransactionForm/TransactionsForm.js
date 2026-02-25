@@ -13,48 +13,74 @@ export default function TransactionForm({
   onSubmit,
 }) {
   const [receiptFile, setReceiptFile] = useState(null);
-  console.log("receiptfile:", receiptFile);
 
   const {
     data: categories,
     error,
     isLoading,
   } = useSWR("/api/categories", fetcher);
+
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>error</p>;
-  if (!categories) return <h1>somthing went wrong</h1>;
+  if (!categories) return <h1>Something went wrong</h1>;
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log("SUBMIT values:", {
+      title: event.target.title.value,
+      amount: event.target.amount.value,
+      category: event.target.category.value,
+      date: event.target.date.value,
+    });
+
+    console.log("SUBMIT receiptFile:", receiptFile);
+
+    onSubmit(event, receiptFile);
+  }
+
   return (
     <FormWrapper>
-      <StyledForm onSubmit={onSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <StyledHeading>{formTitle}</StyledHeading>
+
         <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
-        <Input type="text" name="title" id="title" />
+        <Input type="text" name="title" id="title" required />
+
         <StyledLabel htmlFor="amount">Amount:</StyledLabel>
         <Input
           type="number"
           id="amount"
           name="amount"
           defaultValue={amountDefaultValue}
+          required
         />
-        <Select id="category" name="category" defaultValue="category" required>
-          {categories.map((category) => {
-            return (
-              <option key={category._id} value={category.category}>
-                {category.category}
-              </option>
-            );
-          })}
+
+        <Select id="category" name="category" required>
+          {categories.map((category) => (
+            <option key={category._id} value={category.category}>
+              {category.category}
+            </option>
+          ))}
         </Select>
+
         <StyledLabel htmlFor="date">Date:</StyledLabel>
-        <Input type="date" name="date" id="date" defaultValue={today} />
+        <Input
+          type="date"
+          name="date"
+          id="date"
+          defaultValue={today}
+          required
+        />
 
         <ReceiptInput onFileSelect={setReceiptFile} />
 
-        <Button>{buttonText}</Button>
+        <Button type="submit">{buttonText}</Button>
       </StyledForm>
     </FormWrapper>
   );
 }
+
 const FormWrapper = styled.div`
   padding: 0 24px;
   max-width: 650px;
@@ -77,20 +103,24 @@ export const StyledForm = styled.form`
   width: 80%;
   margin: auto;
 `;
+
 export const StyledHeading = styled.h2`
   text-align: center;
   color: var(--second-text-color);
 `;
+
 export const StyledLabel = styled.label`
   display: flex;
   justify-content: space-between;
   gap: 5px;
 `;
+
 const Button = styled.button`
   margin: auto;
   padding: 10px;
   border-radius: var(--radius-s);
 `;
+
 const Select = styled.select`
   padding: 10px 12px;
   border: 1px solid var(--border);
