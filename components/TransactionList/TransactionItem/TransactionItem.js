@@ -22,7 +22,7 @@ export default function TransactionItem({
     style: "currency",
     currency: "EUR",
   }).format(transaction.amount);
-  function toggleDeleteConfir() {
+  function toggleDeleteConfirm() {
     setShowConfirm((prev) => !prev);
   }
   return (
@@ -33,8 +33,8 @@ export default function TransactionItem({
       </Row>
       {isDetails && (
         <Details>
-          <DeleteIcon onClick={toggleDeleteConfir} />
-          {showConfirm && <DeleteConfirmModal onCancel={toggleDeleteConfir} onConfirm={onConfirm}/>}
+          <DeleteIcon onClick={toggleDeleteConfirm} />
+          {showConfirm && <DeleteConfirmModal onCancel={toggleDeleteConfirm} onConfirm={onConfirm}/>}
           <Row>
             <Title>{transaction.category}</Title>
             <StyledDate>{formattedDate}</StyledDate>
