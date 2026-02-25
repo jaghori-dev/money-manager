@@ -25,7 +25,6 @@ const StyledList = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  /* background-color: var(--background-color); */
   flex-direction: column;
   gap: 20px;
   max-height: 70vh;
