@@ -9,7 +9,7 @@ export default function TransactionItem({
   isDetails = false,
   onEdit,
   onClick,
-  onConfirm
+  onConfirm,
 }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
@@ -34,7 +34,12 @@ export default function TransactionItem({
       {isDetails && (
         <Details>
           <DeleteIcon onClick={toggleDeleteConfirm} />
-          {showConfirm && <DeleteConfirmModal onCancel={toggleDeleteConfirm} onConfirm={onConfirm}/>}
+          {showConfirm && (
+            <DeleteConfirmModal
+              onCancel={toggleDeleteConfirm}
+              onConfirm={onConfirm}
+            />
+          )}
           <Row>
             <Title>{transaction.category}</Title>
             <StyledDate>{formattedDate}</StyledDate>
@@ -47,7 +52,6 @@ export default function TransactionItem({
 }
 
 const DeleteIcon = styled(X)`
-  size:;
   color: red;
   padding: px;
   position: absolute;
@@ -63,14 +67,12 @@ const Card = styled.div`
   padding: 20px;
   position: relative;
   border-radius: var(--radius-m);
-  box-shadow: 0 10px 30px var(--shadow-color);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 35px var(--shadow-color);
+    box-shadow: 0 15px 10px var(--shadow-color);
   }
 `;
 
@@ -82,12 +84,12 @@ const Row = styled.div`
   opacity: 0.9;
 `;
 const Details = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
-  align-items:center:
-  justify-content:center;
-  gap:10px;
-  `;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
 const Title = styled.h2`
   font-size: 20px;
   font-weight: 600;
