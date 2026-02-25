@@ -66,13 +66,13 @@ const Card = styled.div`
   color: var(--text-color);
   padding: 10px 20px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px var(--shadow-color);
+  box-shadow: 0 5px 5px var(--shadow-color);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 10px var(--shadow-color);
+    box-shadow: 0 10px 5px var(--shadow-color);
   }
 `;
 

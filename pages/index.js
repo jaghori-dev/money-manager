@@ -4,24 +4,17 @@ import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import styled from "styled-components";
 import SearchTransactions from "@/components/SearchTransactions/Search Transactions";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Navigation from "@/components/Navigation/Navigation";
 
 export default function HomePage({ transactions = [], error, isLoading }) {
   const [search, setSearch] = useState("");
-  const [filteredTransactions, setFilteredTransactions] = useState(
-    transactions || []
-  );
 
-  useEffect(() => {
-    if (!transactions) return;
-
-    const filtered = transactions.filter((transaction) =>
+  const filteredTransactions = useMemo(() => {
+    return transactions.filter((transaction) =>
       transaction.title.toLowerCase().includes(search.toLowerCase())
     );
-
-    setFilteredTransactions(filtered);
-  }, [search, transactions]);
+  }, [transactions, search]);
 
   if (isLoading) return <Loading />;
   if (error) {

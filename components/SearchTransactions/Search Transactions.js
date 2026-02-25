@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 export default function SearchTransactions({ search, setSearch }) {
-  function handleSearch(event) {
-    setSearch(event.target.value);
-  }
-  function clearSearch() {
-    setSearch("");
-  }
   return (
     <InputWrapper>
       <StyledInput
@@ -14,10 +8,10 @@ export default function SearchTransactions({ search, setSearch }) {
         name="search"
         placeholder="Search transactions..."
         value={search}
-        onChange={handleSearch}
+        onChange={(e) => setSearch(e.target.value)}
       />
       {search && (
-        <ClearButton type="button" onClick={clearSearch}>
+        <ClearButton type="button" onClick={() => setSearch("")}>
           ✖
         </ClearButton>
       )}
@@ -31,7 +25,7 @@ const InputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input`
-  background: var(--search-bg-color);
+  background: var(--shadow-color);
   color: var(--error-text-color);
   border-radius: 30px;
   border: 1px solid var(--shadow-color);
