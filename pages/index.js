@@ -3,7 +3,7 @@ import TotalBalance from "@/components/TotalBalance/TotalBalance";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import styled from "styled-components";
-import SearchTransactions from "@/components/SearchTransactions/Search Transactions";
+import SearchTransactions from "@/components/SearchTransactions/SearchTransactions";
 import { useState, useMemo } from "react";
 import Navigation from "@/components/Navigation/Navigation";
 
