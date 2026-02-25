@@ -3,6 +3,7 @@ import TotalBalance from "@/components/TotalBalance/TotalBalance";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import styled from "styled-components";
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function HomePage({ transactions, error, isLoading }) {
   if (isLoading) return <Loading />;
@@ -19,10 +20,9 @@ export default function HomePage({ transactions, error, isLoading }) {
   return (
     <Container>
       <Title>Money Manager App</Title>
-
       <TotalBalance transactions={transactions} />
-
       <TransactionList transactions={transactions} />
+      <Navigation />
     </Container>
   );
 }
