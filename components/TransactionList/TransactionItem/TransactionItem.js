@@ -1,7 +1,17 @@
 import styled from "styled-components";
 import createGlobalStyle from "styled-components";
+import { X } from "lucide-react";
+import DeleteConfirmModal from "@/components/DeleteConfirmation";
+import { useState } from "react";
 
-export default function TransactionItem({ transaction }) {
+export default function TransactionItem({
+  transaction,
+  isDetails = false,
+  onEdit,
+  onClick,
+  onConfirm
+}) {
+  const [showConfirm, setShowConfirm] = useState(false);
   const formattedDate = new Date(transaction.date).toLocaleDateString("de-DE", {
     weekday: "short",
     day: "2-digit",
@@ -12,27 +22,47 @@ export default function TransactionItem({ transaction }) {
     style: "currency",
     currency: "EUR",
   }).format(transaction.amount);
-
+  function toggleDeleteConfirm() {
+    setShowConfirm((prev) => !prev);
+  }
   return (
     <Card>
-      <TopRow>
-        <Category>{transaction.category}</Category>
-        <StyledDate>{formattedDate}</StyledDate>
-      </TopRow>
-
-      <BottomRow>
+      <Row>
         <Title>{transaction.title}</Title>
         <Amount isIncome={transaction.amount >= 0}>{formattedAmount}</Amount>
-      </BottomRow>
+      </Row>
+      {isDetails && (
+        <Details>
+          <DeleteIcon onClick={toggleDeleteConfirm} />
+          {showConfirm && <DeleteConfirmModal onCancel={toggleDeleteConfirm} onConfirm={onConfirm}/>}
+          <Row>
+            <Title>{transaction.category}</Title>
+            <StyledDate>{formattedDate}</StyledDate>
+          </Row>
+          <Button onClick={onClick}>{onEdit ? "Cancel" : "Edit"}</Button>
+        </Details>
+      )}
     </Card>
   );
 }
 
-const Card = styled.li`
+const DeleteIcon = styled(X)`
+  size:;
+  color: red;
+  padding: px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  background-color: white;
+  border-radius: var(--radius-full);
+`;
+const Card = styled.div`
   background: var(--item-background);
   color: var(--text-color);
   padding: 20px;
-  border-radius: 20px;
+  position: relative;
+  border-radius: var(--radius-m);
   box-shadow: 0 10px 30px var(--shadow-color);
   transition:
     transform 0.2s ease,
@@ -44,36 +74,37 @@ const Card = styled.li`
   }
 `;
 
-const TopRow = styled.div`
+const Row = styled.div`
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   opacity: 0.9;
 `;
-
-const BottomRow = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
+const Details = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items:center:
+  justify-content:center;
+  gap:10px;
+  `;
 const Title = styled.h2`
   font-size: 20px;
   font-weight: 600;
   margin: 0;
   transition: color 0.3s ease;
-
   &:hover {
     color: var(--primary-color);
   }
 `;
-
-const Category = styled.span`
-  font-weight: 500;
-  color: var(--primary-color);
+const Button = styled.button`
+  padding: 10px 20px;
+  border-radius: var(--radius-s);
+  border: none;
+  min-width: 60px;
+  margin: auto;
+  cursor: pointer;
 `;
-
 const StyledDate = styled.span`
   font-size: 13px;
   color: var(--primary-color);
