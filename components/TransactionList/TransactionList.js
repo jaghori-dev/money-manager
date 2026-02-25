@@ -1,11 +1,14 @@
 import TransactionItem from "./TransactionItem/TransactionItem";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function TransactionList({ transactions }) {
   return (
     <StyledList>
       {transactions.map((transaction) => (
-        <TransactionItem key={transaction._id} transaction={transaction} />
+        <StyledLink key={transaction._id} href={transaction._id}>
+          <TransactionItem key={transaction._id} transaction={transaction} />
+        </StyledLink>
       ))}
     </StyledList>
   );
@@ -32,4 +35,7 @@ const StyledList = styled.ul`
     border-radius: 4px;
     border: 2px solid var(--scroll-bar-background);
   }
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
