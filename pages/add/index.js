@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import TransactionsForm from "@/components/TransactionForm/TransactionsForm";
 import useSWR from "swr";
 
@@ -9,22 +8,50 @@ export default function NewTransaction() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const newTransaction = Object.fromEntries(formData);
+    const transactionValues = Object.fromEntries(formData);
 
-    console.log("Test file", receiptFile);
+    console.log("Transaction values:", transactionValues);
+    console.log("Receipt file:", receiptFile);
 
-    const response = await fetch("/api/transactions", {
+    let receiptUrl = "";
+
+    if (receiptFile) {
+      const uploadFormData = new FormData();
+      uploadFormData.append("receipt", receiptFile);
+
+      const uploadResponse = await fetch("/api/receipts", {
+        method: "POST",
+        body: uploadFormData,
+      });
+
+      if (!uploadResponse.ok) {
+        console.error("Receipt upload failed:", uploadResponse.status);
+        return;
+      }
+
+      const uploadResult = await uploadResponse.json();
+      receiptUrl = uploadResult.receiptUrl;
+
+      console.log("Uploaded Url:", receiptUrl);
+    }
+
+    const payload = { ...transactionValues, receiptUrl };
+
+    const createResponse = await fetch("/api/transactions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newTransaction),
+      body: JSON.stringify(payload),
     });
-    if (!response.ok) {
-      console.error(response.status);
+
+    if (!createResponse.ok) {
+      console.error("Create transaction failed:", createResponse.status);
       return;
     }
+
     mutate();
     event.target.reset();
   }
+
   return (
     <TransactionsForm
       onSubmit={handleSubmit}
