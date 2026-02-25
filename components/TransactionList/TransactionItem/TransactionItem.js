@@ -31,7 +31,7 @@ export default function TransactionItem({ transaction }) {
 const Card = styled.li`
   background: var(--item-background);
   color: var(--text-color);
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 20px;
   box-shadow: 0 10px 30px var(--shadow-color);
   transition:

@@ -40,7 +40,7 @@ export default function TransactionForm({
           })}
         </Select>
         <StyledLabel htmlFor="date">Date:</StyledLabel>
-        <Input type="date" name="date" id="date" defaultValue= {today} />
+        <Input type="date" name="date" id="date" defaultValue={today} />
 
         <Button>{buttonText}</Button>
       </StyledForm>

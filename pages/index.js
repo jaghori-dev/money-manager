@@ -36,7 +36,7 @@ export default function HomePage({ transactions, error, isLoading }) {
 const Container = styled.div`
   min-height: 100vh;
   background-color: var(--background-color);
-  padding: 40px 20px;
+  padding: 10px;
   color: var(--main-color);
   max-width: 800px;
   margin: 0 auto;
