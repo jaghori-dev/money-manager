@@ -5,10 +5,13 @@ import useSWR from "swr";
 export default function NewTransaction() {
   const { mutate } = useSWR("/api/transactions");
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event, receiptFile) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const newTransaction = Object.fromEntries(formData);
+
+    console.log("Test file", receiptFile);
 
     const response = await fetch("/api/transactions", {
       method: "POST",
