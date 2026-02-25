@@ -6,7 +6,7 @@ export default function TransactionList({
   transactions,
   emptyMessage = "No transactions found",
 }) {
-  if (!transactions) {
+  if (!transactions || transactions.length === 0) {
     return <h2>{emptyMessage}</h2>;
   }
   return (

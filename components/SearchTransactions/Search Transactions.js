@@ -3,7 +3,6 @@ import styled from "styled-components";
 export default function SearchTransactions({ search, setSearch }) {
   function handleSearch(event) {
     setSearch(event.target.value);
-    console.log(search);
   }
   function clearSearch() {
     setSearch("");

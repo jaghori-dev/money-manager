@@ -3,12 +3,25 @@ import TotalBalance from "@/components/TotalBalance/TotalBalance";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import styled from "styled-components";
-import SearchTransactions from "@/components/Search Transactions/Search Transactions";
-import { useState } from "react";
+import SearchTransactions from "@/components/SearchTransactions/Search Transactions";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation/Navigation";
 
-export default function HomePage({ transactions, error, isLoading }) {
-  const [searchTransaction, setSearchTransaction] = useState("");
+export default function HomePage({ transactions = [], error, isLoading }) {
+  const [search, setSearch] = useState("");
+  const [filteredTransactions, setFilteredTransactions] = useState(
+    transactions || []
+  );
+
+  useEffect(() => {
+    if (!transactions) return;
+
+    const filtered = transactions.filter((transaction) =>
+      transaction.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilteredTransactions(filtered);
+  }, [search, transactions]);
 
   if (isLoading) return <Loading />;
   if (error) {
@@ -19,17 +32,13 @@ export default function HomePage({ transactions, error, isLoading }) {
       />
     );
   }
-  if (!transactions) return <h1>somthing went wrong</h1>;
 
   return (
     <Container>
       <Title>Money Manager App</Title>
       <TotalBalance transactions={transactions} />
-      <SearchTransactions
-        search={searchTransaction}
-        setSearch={setSearchTransaction}
-      />
-      <TransactionList transactions={transactions} />
+      <SearchTransactions search={search} setSearch={setSearch} />
+      <TransactionList transactions={filteredTransactions} />
       <Navigation />
     </Container>
   );
