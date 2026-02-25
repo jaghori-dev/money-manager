@@ -8,7 +8,7 @@ const today = new Date().toISOString().split("T")[0];
 
 export default function TransactionForm({
   formTitle,
-  amountDefaultValue,
+  defaultValues,
   buttonText,
   onSubmit,
 }) {
@@ -35,13 +35,23 @@ export default function TransactionForm({
         <StyledHeading>{formTitle}</StyledHeading>
 
         <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
+<<<<<<< HEAD
         <Input type="text" name="title" id="title" required />
 
+=======
+        <Input
+          type="text"
+          name="title"
+          id="title"
+          defaultValue={defaultValues?.title}
+        />
+>>>>>>> main
         <StyledLabel htmlFor="amount">Amount:</StyledLabel>
         <Input
           type="number"
           id="amount"
           name="amount"
+<<<<<<< HEAD
           defaultValue={amountDefaultValue}
           required
         />
@@ -54,11 +64,25 @@ export default function TransactionForm({
           ))}
         </Select>
 
+=======
+          defaultValue={defaultValues?.amount}
+        />
+        <Select id="category" name="category" defaultValue="category" required>
+          {categories.map((category) => {
+            return (
+              <option key={category._id} value={category.category}>
+                {category.category}
+              </option>
+            );
+          })}
+        </Select>
+>>>>>>> main
         <StyledLabel htmlFor="date">Date:</StyledLabel>
         <Input
           type="date"
           name="date"
           id="date"
+<<<<<<< HEAD
           defaultValue={today}
           required
         />
@@ -66,6 +90,13 @@ export default function TransactionForm({
         <ReceiptInput onFileSelect={setReceiptFile} />
 
         <Button type="submit">{buttonText}</Button>
+=======
+          defaultValue={
+            defaultValues?.date ? new Date().toISOString().split("T")[0] : today
+          }
+        />
+        <Button>{buttonText}</Button>
+>>>>>>> main
       </StyledForm>
     </FormWrapper>
   );
@@ -92,6 +123,7 @@ export const StyledForm = styled.form`
   gap: 5px;
   width: 80%;
   margin: auto;
+  color: var(--main-color);
 `;
 
 export const StyledHeading = styled.h2`

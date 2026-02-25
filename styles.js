@@ -24,6 +24,10 @@ export default createGlobalStyle`
     --error-hover-button-color: #be123c;
 
     --loading-bg-color: rgba(0, 0, 0, 0.5);
+
+    --nav-bg-color: rgba(20, 20, 20, 0.7);
+    --nav-border-color: rgba(255, 255, 255, 0.08);
+    --nav-icons-color: #aaa;
   
   }
 
@@ -37,5 +41,6 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
     background-color: var(--background-color);
+    padding-bottom: 50px;
   }
 `;

@@ -1,5 +1,6 @@
 import TransactionsForm from "@/components/TransactionForm/TransactionsForm";
 import useSWR from "swr";
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function NewTransaction() {
   const { mutate } = useSWR("/api/transactions");
@@ -48,10 +49,13 @@ export default function NewTransaction() {
   }
 
   return (
-    <TransactionsForm
-      onSubmit={handleSubmit}
-      formTitle="Add new transaction"
-      buttonText="Save transaction"
-    />
+    <>
+      <TransactionsForm
+        onSubmit={handleSubmit}
+        formTitle="Add new transaction"
+        buttonText="Save transaction"
+      />
+      <Navigation />
+    </>
   );
 }
