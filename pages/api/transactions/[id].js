@@ -35,6 +35,20 @@ export default async function handler(request, response) {
       return;
     }
   }
+  if (request.method === "DELETE") {
+    try {
+      const deleteTransaction = await Transaction.findByIdAndDelete(id);
+      if (!deleteTransaction) {
+        response.status(400).json({ success: "Transaction not found" });
+        return;
+      }
+      response.status(200).json({ success: true });
+      return;
+    } catch (error) {
+      response.status(400).json({ error: message });
+      return;
+    }
+  }
   response.status(405).json({ status: "Method not allowed." });
   return;
 }

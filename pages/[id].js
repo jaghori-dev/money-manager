@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function Details() {
-  const [isEdit, setIsEdit] = useState(false);
+  const [onEdit, setOnEdit] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -23,7 +23,7 @@ export default function Details() {
   if (!transaction) return <h2>transaction not found</h2>;
 
   function toggleEdit() {
-    setIsEdit((prev) => !prev);
+    setOnEdit((prev) => !prev);
   }
   async function handleUpdate(event) {
     event.preventDefault();
@@ -39,7 +39,16 @@ export default function Details() {
     if (response.ok) {
       mutate(`/api/transactions/${id}`);
     }
-    setIsEdit((prev) => !prev);
+    setOnEdit((prev) => !prev);
+  }
+  async function handleDelete() {
+    const response = await fetch(`/api/transactions/${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      await mutate("/api/transactions");
+      router.push("/");
+    }
   }
   return (
     <div>
@@ -47,11 +56,12 @@ export default function Details() {
         transaction={transaction}
         isDetails={true}
         onClick={toggleEdit}
-        isEdit={isEdit}
+        onEdit={onEdit}
+        onConfirm={handleDelete}
       >
         hello
       </TransactionItem>
-      {isEdit && (
+      {onEdit && (
         <TransactionForm
           defaultValues={transaction}
           buttonText="Update transaction"
