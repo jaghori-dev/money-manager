@@ -4,6 +4,7 @@ export default async function handler(request, response) {
   }
 
   console.log("receipt hit");
+  console.log("content-type:", request.headers["content-type"]);
 
   return response.status(200).json({ status: "ok" });
 }

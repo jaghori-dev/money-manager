@@ -9,10 +9,12 @@ export default function NewTransaction() {
     event.preventDefault();
 
     if (receiptFile) {
-      console.log("Sending receipt to /api/receipts...");
+      const uploadFormData = new FormData();
+      uploadFormData.append("receipt", receiptFile);
 
       const uploadResponse = await fetch("/api/receipts", {
         method: "POST",
+        body: uploadFormData,
       });
 
       const uploadResult = await uploadResponse.json();
