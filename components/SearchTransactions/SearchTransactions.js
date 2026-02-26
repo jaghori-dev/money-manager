@@ -8,7 +8,7 @@ export default function SearchTransactions({ search, setSearch }) {
       <SearchIcon size={20} />
       <StyledInput
         type="search"
-        placeholder="Search transactions..."
+        placeholder="Search..."
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
