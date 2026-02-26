@@ -5,8 +5,21 @@ import Navigation from "@/components/Navigation/Navigation";
 export default function NewTransaction() {
   const { mutate } = useSWR("/api/transactions");
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event, receiptFile) {
     event.preventDefault();
+
+    if (receiptFile) {
+      console.log("Sending receipt to /api/receipts...");
+
+      const uploadResponse = await fetch("/api/receipts", {
+        method: "POST",
+      });
+
+      const uploadResult = await uploadResponse.json();
+
+      console.log("Response from API:", uploadResult);
+    }
+
     const formData = new FormData(event.target);
     const newTransaction = Object.fromEntries(formData);
 
