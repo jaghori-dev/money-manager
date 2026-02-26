@@ -27,8 +27,6 @@ export default function TransactionForm({
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log("Submit receiptFile:", receiptFile);
-
     onSubmit(event, receiptFile);
   }
 

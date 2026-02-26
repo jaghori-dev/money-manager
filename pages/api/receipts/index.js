@@ -60,11 +60,6 @@ export default async function handler(request, response) {
       });
     }
 
-    console.log("Uploading receipt to Claudary");
-    console.log("name:", firstFile.originalFilename);
-    console.log("type:", firstFile.mimetype);
-    console.log("size:", firstFile.size);
-
     const uploadResult = await cloudinary.uploader.upload(firstFile.filepath, {
       folder: "money-manager-receipts",
       resource_type: "image",
