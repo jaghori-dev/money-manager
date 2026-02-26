@@ -9,12 +9,13 @@ export default function App({ Component, pageProps }) {
     error,
     isLoading,
   } = useSWR("/api/transactions", fetcher);
+  const reversedTransactions = transactions?.slice().reverse();
   return (
     <>
       <GlobalStyle />
       <Component
         {...pageProps}
-        transactions={transactions}
+        transactions={reversedTransactions}
         error={error}
         isLoading={isLoading}
       />
