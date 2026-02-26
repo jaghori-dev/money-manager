@@ -18,7 +18,7 @@ const navItems = [
   },
   {
     path: "/add",
-    label: "New Transaction",
+    label: "Add",
     icon: CirclePlus,
     size: 25,
   },
@@ -49,17 +49,14 @@ export default function Navigation() {
 const Wrapper = styled.nav`
   position: fixed;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20vw;
-  max-width: 600px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   gap: 30px;
   padding: 7px 0;
   background: var(--nav-bg-color);
   backdrop-filter: blur(20px);
-  border-radius: 40px;
+  border-radius: var(--radius-full);
   border: 1px solid var(--nav-border-color);
   box-shadow: 0 10px 30px var(--loading-bg-color);
 `;
