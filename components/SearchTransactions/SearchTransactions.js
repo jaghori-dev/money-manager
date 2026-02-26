@@ -28,16 +28,16 @@ const SearchIcon = styled(Search)`
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--error-text-color);
+  color: var(--text);
 `;
 
 const StyledInput = styled.input`
   width: 100%;
   padding: 10px 40px 10px 40px;
-  border-radius: 30px;
-  border: 1px solid var(--shadow-color);
-  background: var(--shadow-color);
-  color: var(--error-text-color);
+  border-radius: var(--radius-l);
+  border: 1px solid var(--border);
+  background: var(--shadow);
+  color: var(--text);
   outline: none;
 `;
 
@@ -47,8 +47,8 @@ const ClearButton = styled.button`
   top: 50%;
   transform: translateY(-50%);
   border: none;
-  background: transparent;
+  background: var(--background);
   cursor: pointer;
   font-size: 14px;
-  color: var(--error-text-color);
+  color: var(--text);
 `;
