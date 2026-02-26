@@ -8,15 +8,15 @@ export const config = {
 
 function parseIncomingForm(request) {
   const formParser = formidable({
-    maxFieldsSize: 5 * 1024 * 1024,
+    maxFileSize: 5 * 1024 * 1024,
   });
 
-  return new Promise(function (resolce, reject) {
+  return new Promise(function (resolve, reject) {
     formParser.parse(request, function (error, fields, files) {
       if (error) {
         reject(error);
       } else {
-        resolce({ fields: fields, files: files });
+        resolve({ fields: fields, files: files });
       }
     });
   });
@@ -29,6 +29,7 @@ export default async function handler(request, response) {
 
   try {
     const parsedForm = await parseIncomingForm(request);
+
     const receiptFile = parsedForm.files.receipt;
 
     if (!receiptFile) {
@@ -37,14 +38,27 @@ export default async function handler(request, response) {
 
     const firstFile = Array.isArray(receiptFile) ? receiptFile[0] : receiptFile;
 
+    const allowedMimeTypes = ["image/jpeg", "image/png", "image/webp"];
+
+    if (!allowedMimeTypes.includes(firstFile.mimetype)) {
+      return response.status(400).json({
+        status: "Unsupported file type. Only JPG, PNG or WEBP are allowed.",
+      });
+    }
+
+    if (firstFile.size > 5 * 1024 * 1024) {
+      return response.status(400).json({
+        status: "File is too large. Maximum size is 5MB.",
+      });
+    }
+
     console.log("name:", firstFile.originalFilename);
     console.log("type:", firstFile.mimetype);
     console.log("size:", firstFile.size);
 
-    return response.status(200).json({ status: "file received" });
+    return response.status(200).json({ status: "file is valid" });
   } catch (error) {
     console.error("error:", error);
-
     return response.status(400).json({ status: error.message });
   }
 }
