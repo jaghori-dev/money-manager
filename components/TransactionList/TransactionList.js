@@ -2,7 +2,13 @@ import TransactionItem from "./TransactionItem/TransactionItem";
 import styled from "styled-components";
 import Link from "next/link";
 
-export default function TransactionList({ transactions }) {
+export default function TransactionList({
+  transactions,
+  emptyMessage = "No transactions found",
+}) {
+  if (!transactions || transactions.length === 0) {
+    return <h2>{emptyMessage}</h2>;
+  }
   return (
     <StyledList>
       {transactions.map((transaction) => (

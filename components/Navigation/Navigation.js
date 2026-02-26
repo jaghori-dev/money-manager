@@ -1,10 +1,4 @@
-import {
-  House,
-  CirclePlus,
-  ChartLine,
-  User,
-  ArrowLeftRight,
-} from "lucide-react";
+import { House, CirclePlus } from "lucide-react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
