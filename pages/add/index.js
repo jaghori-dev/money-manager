@@ -29,7 +29,6 @@ export default function NewTransaction() {
         formTitle="Add new transaction"
         buttonText="Save transaction"
       />
-      <Navigation />
     </>
   );
 }
