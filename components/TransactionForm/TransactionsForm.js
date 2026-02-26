@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import useSWR from "swr";
 import ReceiptInput from "../ReceiptInput/ReceiptInput";
+import { useState } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
@@ -11,6 +12,8 @@ export default function TransactionForm({
   buttonText,
   onSubmit,
 }) {
+  const [receiptFile, setReceiptFile] = useState(null);
+
   const {
     data: categories,
     error,
@@ -19,6 +22,7 @@ export default function TransactionForm({
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>error</p>;
   if (!categories) return <h1>somthing went wrong</h1>;
+  console.log("receiptFile state:", receiptFile);
   return (
     <FormWrapper>
       <StyledForm onSubmit={onSubmit}>
@@ -55,11 +59,7 @@ export default function TransactionForm({
             defaultValues?.date ? new Date().toISOString().split("T")[0] : today
           }
         />
-        <ReceiptInput
-          onFileSelect={function (file) {
-            console.log("Test ReceiptInput", file);
-          }}
-        />
+        <ReceiptInput onFileSelect={setReceiptFile} />
         <Button>{buttonText}</Button>
       </StyledForm>
     </FormWrapper>
