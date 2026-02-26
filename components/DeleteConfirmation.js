@@ -6,7 +6,7 @@ export default function DeleteConfirmModal({ onConfirm, onCancel }) {
       <Modal>
         <p>Are you sure you want to delete this transaction?</p>
         <ButtonGroup>
-          <CancelButton onClick={onCancel}>Cancel</CancelButton>
+          <Button onClick={onCancel}>Cancel</Button>
           <DeleteButton onClick={onConfirm}>Delete</DeleteButton>
         </ButtonGroup>
       </Modal>
@@ -22,7 +22,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 500;
 `;
 
 const Modal = styled.div`
@@ -48,7 +48,7 @@ const ButtonGroup = styled.div`
   gap: 10px;
 `;
 
-const CancelButton = styled.button`
+export const Button = styled.button`
   padding: 0.6rem 1.2rem;
   border-radius: var(--radius-s);
   border: none;

@@ -53,20 +53,25 @@ export default function TransactionItem({
 
 const DeleteIcon = styled(X)`
   color: red;
-  padding: px;
   position: absolute;
   right: 0;
   top: 0;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--text);
   border-radius: var(--radius-full);
 `;
 const Card = styled.div`
-  background: var(--item-background);
-  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--background);
+  position: relative;
+  color: var(--text);
   padding: 10px 20px;
+  border: 1px solid var(--border);
   border-radius: 20px;
-  box-shadow: 0 5px 5px var(--shadow-color);
+  box-shadow: 0 5px 5px var(--shadow);
+  backdrop-filter: blur(20px);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -77,7 +82,7 @@ const Card = styled.div`
 `;
 
 const Row = styled.div`
-  margin-top: 10px;
+  margin: 5px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -103,29 +108,35 @@ const Title = styled.h2`
   font-weight: 600;
   margin: 0;
   transition: color 0.3s ease;
-  &:hover {
-    color: var(--primary-color);
-  }
 `;
 
-const Button = styled.button`
-  padding: 10px 20px;
+export const Button = styled.button`
+  padding: 0.6rem 1.2rem;
   border-radius: var(--radius-s);
   border: none;
-  min-width: 60px;
-  margin: auto;
   cursor: pointer;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+
+  transition: 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
 `;
 
 const Category = styled.span`
   font-weight: 500;
   font-size: 18px;
-  color: var(--primary-color);
+  color: var(--text);
 `;
 
 const StyledDate = styled.span`
   font-size: 13px;
-  color: var(--primary-color);
+  color: var(--text);
 `;
 
 const Amount = styled.span`
@@ -138,7 +149,6 @@ const Amount = styled.span`
     transform 0.3s ease;
 
   &:hover {
-    color: var(--primary-color);
     transform: scale(1.1);
   }
 `;
