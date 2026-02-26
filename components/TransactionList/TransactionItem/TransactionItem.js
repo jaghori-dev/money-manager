@@ -44,6 +44,11 @@ export default function TransactionItem({
             <Title>{transaction.category}</Title>
             <StyledDate>{formattedDate}</StyledDate>
           </Row>
+          {transaction.receiptUrl ? (
+            <ReceiptImage src={transaction.receiptUrl} alt="Receipt image" />
+          ) : (
+            <NoReceiptText>No receipt attached</NoReceiptText>
+          )}
           <Button onClick={onClick}>{onEdit ? "Cancel" : "Edit"}</Button>
         </Details>
       )}
@@ -124,4 +129,18 @@ const Amount = styled.span`
     color: var(--primary-color);
     transform: scale(1.1);
   }
+`;
+const ReceiptImage = styled.img`
+  display: block;
+  width: 200px;
+  height: 400px;
+  object-fit: cover;
+  margin: 12px auto;
+  border-radius: var(--radius-s);
+`;
+
+const NoReceiptText = styled.p`
+  text-align: center;
+  margin-top: 12px;
+  color: var(--second-text-color);
 `;
