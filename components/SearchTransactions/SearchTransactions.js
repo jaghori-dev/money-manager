@@ -7,7 +7,7 @@ export default function SearchTransactions({ search, setSearch }) {
     <InputWrapper>
       <SearchIcon size={20} />
       <StyledInput
-        type="search"
+        type="text"
         placeholder="Search..."
         value={search}
         onChange={(event) => setSearch(event.target.value)}
@@ -39,10 +39,6 @@ const StyledInput = styled.input`
   background: var(--shadow-color);
   color: var(--error-text-color);
   outline: none;
-
-  &::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-  }
 `;
 
 const ClearButton = styled.button`
