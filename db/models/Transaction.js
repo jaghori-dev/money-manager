@@ -7,6 +7,7 @@ const transactionSchema = new Schema(
     amount: { type: Number, required: true },
     category: { type: String },
     date: { type: Date, default: Date.now },
+    receiptUrl: { type: String, default: "" },
   },
   { timestamps: true }
 );
