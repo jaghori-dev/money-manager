@@ -1,61 +1,58 @@
 import styled from "styled-components";
+import { Search } from "lucide-react";
+import Error from "next/error";
 
 export default function SearchTransactions({ search, setSearch }) {
   return (
     <InputWrapper>
+      <SearchIcon size={20} />
       <StyledInput
-        type="text"
-        name="search"
+        type="search"
         placeholder="Search transactions..."
         value={search}
-        onChange={(error) => setSearch(error.target.value)}
+        onChange={(event) => setSearch(event.target.value)}
       />
-      {search && (
-        <ClearButton type="button" onClick={() => setSearch("")}>
-          ✖
-        </ClearButton>
-      )}
+      {search && <ClearButton onClick={() => setSearch("")}>✕</ClearButton>}
     </InputWrapper>
   );
 }
 
 const InputWrapper = styled.div`
   position: relative;
+  width: 100%;
   margin-bottom: 10px;
 `;
 
-const StyledInput = styled.input`
-  background: var(--shadow-color);
+const SearchIcon = styled(Search)`
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--error-text-color);
+`;
+
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 10px 40px 10px 40px;
   border-radius: 30px;
   border: 1px solid var(--shadow-color);
-  padding: 10px 36px 10px 14px;
+  background: var(--shadow-color);
+  color: var(--error-text-color);
   outline: none;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  width: 100%;
-  &:hover {
-    border-color: var(--search-focus-shadow);
-  }
-  &:focus {
-    background: var(--search-focus-bg);
-    border-color: var(--search-focus-shadow);
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
   }
 `;
 
 const ClearButton = styled.button`
   position: absolute;
-  right: 8px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
   border: none;
+  background: transparent;
   cursor: pointer;
-  color: var(--error-text-color);
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 14px;
+  color: var(--error-text-color);
 `;
