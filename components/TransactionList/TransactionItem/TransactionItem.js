@@ -40,10 +40,10 @@ export default function TransactionItem({
               onConfirm={onConfirm}
             />
           )}
-          <Row>
-            <Title>{transaction.category}</Title>
+          <DetailsRow>
+            <Category>{transaction.category}</Category>
             <StyledDate>{formattedDate}</StyledDate>
-          </Row>
+          </DetailsRow>
           {transaction.receiptUrl ? (
             <ReceiptImage src={transaction.receiptUrl} alt="Receipt image" />
           ) : (
@@ -69,15 +69,15 @@ const DeleteIcon = styled(X)`
 const Card = styled.div`
   background: var(--item-background);
   color: var(--text-color);
-  padding: 20px;
-  position: relative;
-  border-radius: var(--radius-m);
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 5px 5px var(--shadow-color);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 10px var(--shadow-color);
+    box-shadow: 0 10px 5px var(--shadow-color);
   }
 `;
 
@@ -88,10 +88,19 @@ const Row = styled.div`
   font-size: 14px;
   opacity: 0.9;
 `;
+
+const DetailsRow = styled.div`
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  opacity: 0.9;
+`;
+
 const Details = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: space-between;
   gap: 10px;
 `;
 const Title = styled.h2`
@@ -103,6 +112,7 @@ const Title = styled.h2`
     color: var(--primary-color);
   }
 `;
+
 const Button = styled.button`
   padding: 10px 20px;
   border-radius: var(--radius-s);
@@ -111,6 +121,13 @@ const Button = styled.button`
   margin: auto;
   cursor: pointer;
 `;
+
+const Category = styled.span`
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--primary-color);
+`;
+
 const StyledDate = styled.span`
   font-size: 13px;
   color: var(--primary-color);
