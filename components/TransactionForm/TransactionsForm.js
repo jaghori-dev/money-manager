@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import useSWR from "swr";
+import ReceiptInput from "../ReceiptInput/ReceiptInput";
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
 
@@ -52,6 +54,11 @@ export default function TransactionForm({
           defaultValue={
             defaultValues?.date ? new Date().toISOString().split("T")[0] : today
           }
+        />
+        <ReceiptInput
+          onFileSelect={function (file) {
+            console.log("Test ReceiptInput", file);
+          }}
         />
         <Button>{buttonText}</Button>
       </StyledForm>
