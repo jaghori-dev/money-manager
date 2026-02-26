@@ -19,13 +19,22 @@ export default function TransactionForm({
     error,
     isLoading,
   } = useSWR("/api/categories", fetcher);
+
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>error</p>;
   if (!categories) return <h1>somthing went wrong</h1>;
-  console.log("receiptFile state:", receiptFile);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log("Submit receiptFile:", receiptFile);
+
+    onSubmit(event, receiptFile);
+  }
+
   return (
     <FormWrapper>
-      <StyledForm onSubmit={onSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <StyledHeading>{formTitle}</StyledHeading>
         <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
         <Input
