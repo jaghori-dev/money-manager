@@ -17,8 +17,8 @@ export default function DeleteConfirmModal({ onConfirm, onCancel }) {
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(25px);
+  background: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
