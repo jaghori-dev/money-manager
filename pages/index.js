@@ -7,10 +7,12 @@ import SearchTransactions from "@/components/SearchTransactions/SearchTransactio
 import { useState, useMemo } from "react";
 import Navigation from "@/components/Navigation/Navigation";
 
-export default function HomePage({ transactions = [], error, isLoading }) {
+export default function HomePage({ transactions, error, isLoading }) {
   const [search, setSearch] = useState("");
 
   const filteredTransactions = useMemo(() => {
+    if (!transactions) return [];
+
     return transactions.filter((transaction) =>
       transaction.title.toLowerCase().includes(search.toLowerCase())
     );

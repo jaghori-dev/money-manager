@@ -8,7 +8,7 @@ export default function SearchTransactions({ search, setSearch }) {
         name="search"
         placeholder="Search transactions..."
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(error) => setSearch(error.target.value)}
       />
       {search && (
         <ClearButton type="button" onClick={() => setSearch("")}>
