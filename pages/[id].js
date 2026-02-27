@@ -4,7 +4,7 @@ import TransactionItem from "@/components/TransactionList/TransactionItem/Transa
 import useSWR, { mutate } from "swr";
 import TransactionForm from "@/components/TransactionForm/TransactionsForm";
 import { useState } from "react";
-
+import { Container } from ".";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function Details() {
   const [onEdit, setOnEdit] = useState(false);
@@ -51,7 +51,7 @@ export default function Details() {
     }
   }
   return (
-    <div>
+    <Container>
       <TransactionItem
         transaction={transaction}
         isDetails={true}
@@ -66,8 +66,9 @@ export default function Details() {
           defaultValues={transaction}
           buttonText="Update transaction"
           onSubmit={handleUpdate}
+          formTitle='Edit transaction'
         />
       )}
-    </div>
+    </Container>
   );
 }

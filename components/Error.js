@@ -15,7 +15,7 @@ export default function Error({ message, onRetry }) {
 }
 
 const Wrapper = styled.div`
-  background-color: var(--text-color);
+  background-color: var(--text);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -24,10 +24,10 @@ const Wrapper = styled.div`
 `;
 
 const ErrorCard = styled.div`
-  background: var(--error-background-color);
-  color: var(--main-color);
+  background: var(--background);
+  color: var(--text);
   padding: 40px 50px;
-  border-radius: 16px;
+  border-radius: var(--radius-s);
   text-align: center;
   max-width: 400px;
   width: 100%;
@@ -42,12 +42,12 @@ const Icon = styled.span`
 const Message = styled.p`
   margin-bottom: 24px;
   font-size: 16px;
-  color: var(--error-text-color);
+  color: var(--text);
 `;
 
 const RetryButton = styled.button`
   background: var(--error-button-color);
-  color: var(--main-color);
+  color: var(--rext);
   border: none;
   padding: 10px 18px;
   border-radius: 8px;
@@ -56,7 +56,7 @@ const RetryButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background: var(--error-hover-button-color);
+    background: var(--hover-color);
     transform: translateY(-2px);
   }
 

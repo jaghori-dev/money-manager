@@ -1,6 +1,6 @@
 import TransactionsForm from "@/components/TransactionForm/TransactionsForm";
 import useSWR from "swr";
-import Navigation from "@/components/Navigation/Navigation";
+import { Container } from "..";
 import { useState } from "react";
 
 export default function NewTransaction() {
@@ -56,13 +56,13 @@ export default function NewTransaction() {
     event.target.reset();
   }
   return (
-    <>
+    <Container>
       <TransactionsForm
         onSubmit={handleSubmit}
         formTitle="Add new transaction"
         buttonText="Save transaction"
         receiptErrorMessage={errorMessage}
       />
-    </>
+    </Container>
   );
 }

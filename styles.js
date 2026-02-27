@@ -2,36 +2,28 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --background-color: #0f0f0f;
-    --shadow-color: rgba(93, 87, 87, 0.4);
-    --item-background: #0bac44;
-    --text-color: #000000;
-    --second-text-color: white;
-    --primary-color: #373737;
+    --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
+    --card: rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+    --text: #ffff;
+    --primary-color: #102219;
+    --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
     --main-color: #ffff;
-    --income-color: #026300;
-    --expenses-color: #970c0c;
+    // --income-color: #255e08;
+    // --income-color: #ffff;
+    --expenses-color: #ff0505;
+    --icons: #aaa;
     --radius-s: 12px;
     --radius-m: 20px;
     --radius-l: 50px;
     --radius-full: 100px;
+    --border: rgba(255, 255, 255, 0.39);
 
     --scroll-bar-background: #1a1a1a;
 
-    --error-background-color: #111;
-    --error-text-color: #ccc;
     --error-button-color: #e11d48;
-    --error-hover-button-color: #be123c;
-
-    --loading-bg-color: rgba(0, 0, 0, 0.5);
-
-    --search-bg-color: rgba(200, 200, 200, 0.2);
-    --search-focus-bg: rgba(200, 200, 200, 0.3);
-    --search-focus-shadow: rgba(150, 150, 150, 0.6)
-
-    --nav-bg-color: rgba(20, 20, 20, 0.7);
-    --nav-border-color: rgba(255, 255, 255, 0.08);
-    --nav-icons-color: #aaa;
+    --hover-color: #be123c;
   
   }
 
@@ -44,7 +36,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: var(--background-color);
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     padding-bottom: 50px;
   }
 `;

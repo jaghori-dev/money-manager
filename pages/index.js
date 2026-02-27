@@ -34,19 +34,19 @@ export default function HomePage({ transactions, error, isLoading }) {
       <TotalBalance transactions={transactions} />
       <SearchTransactions search={search} setSearch={setSearch} />
       <TransactionList transactions={filteredTransactions} />
-      <Navigation />
     </Container>
   );
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   min-height: 100vh;
-  background-color: var(--background-color);
+  background-color: var(--background);
   padding: 10px;
-  color: var(--main-color);
-  max-width: 800px;
+  color: var(--text);
+  max-width: 600px;
   margin: 0 auto;
-
+  text-align: center;
+  backdrop-filter: blur(90px);
   @media (max-width: 600px) {
     padding: 20px 10px;
   }
@@ -55,6 +55,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 32px;
   font-weight: 600;
+  margin: auto;
   margin-bottom: 30px;
 
   @media (max-width: 600px) {

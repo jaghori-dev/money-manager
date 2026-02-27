@@ -42,17 +42,17 @@ export default function Navigation() {
 
 const Wrapper = styled.nav`
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
   gap: 30px;
   padding: 7px 0;
-  background: var(--nav-bg-color);
+  background: var(--background);
   backdrop-filter: blur(20px);
-  border-radius: var(--radius-full);
-  border: 1px solid var(--nav-border-color);
-  box-shadow: 0 10px 30px var(--loading-bg-color);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 `;
 
 const StyledLink = styled(Link)`
@@ -63,9 +63,9 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   transition: 0.3s;
   color: ${(props) =>
-    props.active ? "var(--main-color)" : "var(--nav-icons-color)"};
+    props.active ? "var(--income-color)" : "var(--text)"};
   &:hover {
-    color: var(--main-color);
+    color: var(--text);
   }
 `;
 

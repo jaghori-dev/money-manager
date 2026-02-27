@@ -23,7 +23,7 @@ const Loader = styled.div`
   position: relative;
   width: 64px;
   height: 64px;
-  background-color: var(--loading-bg-color);
+  background-color: var(--background);
   transform: rotate(45deg);
   overflow: hidden;
   &:after {
