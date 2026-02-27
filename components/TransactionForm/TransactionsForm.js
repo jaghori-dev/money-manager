@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useSWR from "swr";
 import { useState } from "react";
-
+import { Container } from "@/pages";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
 
@@ -31,7 +31,7 @@ export default function TransactionForm({
   }
 
   return (
-    <FormWrapper>
+    <Container>
       <StyledForm onSubmit={handleSubmit}>
         <StyledHeading>{formTitle}</StyledHeading>
         <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
@@ -87,17 +87,9 @@ export default function TransactionForm({
         />
         <Button>{buttonText}</Button>
       </StyledForm>
-    </FormWrapper>
+    </Container>
   );
 }
-const FormWrapper = styled.div`
-  padding: 0 24px;
-  max-width: 650px;
-  margin: 45px auto 0;
-  background: var(--background-color);
-  box-shadow: var(--shadow-color);
-  border-radius: var(--radius-m);
-`;
 
 const Input = styled.input`
   height: 45px;
@@ -108,10 +100,10 @@ const Input = styled.input`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   width: 80%;
   margin: auto;
-  color: var(--main-color);
+  color: var(--text);
 `;
 export const StyledHeading = styled.h2`
   text-align: center;
@@ -122,10 +114,21 @@ export const StyledLabel = styled.label`
   justify-content: space-between;
   gap: 5px;
 `;
-const Button = styled.button`
-  margin: auto;
-  padding: 10px;
+export const Button = styled.button`
+  padding: 0.6rem 1.2rem;
   border-radius: var(--radius-s);
+  border: none;
+  cursor: pointer;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+
+  transition: 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
 `;
 const Select = styled.select`
   padding: 10px 12px;
