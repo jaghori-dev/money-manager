@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import useSWR from "swr";
-import ReceiptInput from "../ReceiptInput/ReceiptInput";
 import { useState } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -11,6 +10,7 @@ export default function TransactionForm({
   defaultValues,
   buttonText,
   onSubmit,
+  receiptErrorMessage,
 }) {
   const [receiptFile, setReceiptFile] = useState(null);
 
@@ -66,7 +66,25 @@ export default function TransactionForm({
             defaultValues?.date ? new Date().toISOString().split("T")[0] : today
           }
         />
-        <ReceiptInput onFileSelect={setReceiptFile} />
+        <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
+        {receiptErrorMessage ? (
+          <ReceiptErrorMessage>{receiptErrorMessage}</ReceiptErrorMessage>
+        ) : null}
+        <Input
+          id="receipt"
+          name="receipt"
+          type="file"
+          accept="image/*"
+          onChange={function (event) {
+            const selectedFile = event.target.files[0];
+
+            if (selectedFile) {
+              setReceiptFile(selectedFile);
+            } else {
+              setReceiptFile(null);
+            }
+          }}
+        />
         <Button>{buttonText}</Button>
       </StyledForm>
     </FormWrapper>
@@ -113,4 +131,9 @@ const Select = styled.select`
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-s);
+`;
+const ReceiptErrorMessage = styled.p`
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  color: #d93025;
 `;

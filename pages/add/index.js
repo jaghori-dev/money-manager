@@ -1,9 +1,11 @@
 import TransactionsForm from "@/components/TransactionForm/TransactionsForm";
 import useSWR from "swr";
 import Navigation from "@/components/Navigation/Navigation";
+import { useState } from "react";
 
 export default function NewTransaction() {
   const { mutate } = useSWR("/api/transactions");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event, receiptFile) {
     event.preventDefault();
@@ -11,6 +13,8 @@ export default function NewTransaction() {
     const formData = new FormData(event.target);
     const newTransaction = Object.fromEntries(formData);
     let receiptUrl = "";
+
+    setErrorMessage("");
 
     if (receiptFile) {
       const uploadFormData = new FormData();
@@ -22,12 +26,16 @@ export default function NewTransaction() {
       });
       if (!uploadResponse.ok) {
         const errorResult = await uploadResponse.json();
-        console.error("Receipt upload failed:", errorResult);
+
+        const messageFromServer =
+          errorResult.message || "Receipt upload failed.";
+        setErrorMessage(messageFromServer);
+
         return;
       }
 
       const uploadResult = await uploadResponse.json();
-      receiptUrl = uploadResult.receiptUrl;
+      receiptUrl = uploadResult.secure_url;
     }
 
     const payload = {
@@ -53,6 +61,7 @@ export default function NewTransaction() {
         onSubmit={handleSubmit}
         formTitle="Add new transaction"
         buttonText="Save transaction"
+        receiptErrorMessage={errorMessage}
       />
     </>
   );
