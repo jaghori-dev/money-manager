@@ -57,11 +57,11 @@ export default function NewTransaction() {
   }
   return (
     <>
-      {errorMessage ? <p style={{ color: "red" }}>{errorMessage}</p> : null}
       <TransactionsForm
         onSubmit={handleSubmit}
         formTitle="Add new transaction"
         buttonText="Save transaction"
+        receiptErrorMessage={errorMessage}
       />
     </>
   );
