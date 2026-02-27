@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import useSWR from "swr";
-import ReceiptInput from "../ReceiptInput/ReceiptInput";
 import { useState } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -66,7 +65,22 @@ export default function TransactionForm({
             defaultValues?.date ? new Date().toISOString().split("T")[0] : today
           }
         />
-        <ReceiptInput onFileSelect={setReceiptFile} />
+        <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
+        <Input
+          id="receipt"
+          name="receipt"
+          type="file"
+          accept="image/*"
+          onChange={function (event) {
+            const selectedFile = event.target.files[0];
+
+            if (selectedFile) {
+              setReceiptFile(selectedFile);
+            } else {
+              setReceiptFile(null);
+            }
+          }}
+        />
         <Button>{buttonText}</Button>
       </StyledForm>
     </FormWrapper>
