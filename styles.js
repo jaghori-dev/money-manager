@@ -2,14 +2,16 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --background: #102219;
-    --item-background: #0bac44;
+    --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
+    --card: rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
     --text: #ffff;
-    --second-text-color: white;
-    --primary-color: #373737;
+    --primary-color: #102219;
     --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
     --main-color: #ffff;
-    --income-color: #15ec80;
+    // --income-color: #255e08;
+    // --income-color: #ffff;
     --expenses-color: #ff0505;
     --icons: #aaa;
     --radius-s: 12px;
@@ -34,7 +36,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: var(--background);
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     padding-bottom: 50px;
   }
 `;

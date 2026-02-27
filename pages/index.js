@@ -34,7 +34,6 @@ export default function HomePage({ transactions, error, isLoading }) {
       <TotalBalance transactions={transactions} />
       <SearchTransactions search={search} setSearch={setSearch} />
       <TransactionList transactions={filteredTransactions} />
-      <Navigation />
     </Container>
   );
 }
@@ -46,7 +45,8 @@ export const Container = styled.div`
   color: var(--text);
   max-width: 600px;
   margin: 0 auto;
-
+  text-align: center;
+  backdrop-filter: blur(90px);
   @media (max-width: 600px) {
     padding: 20px 10px;
   }

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import createGlobalStyle from "styled-components";
 import { X } from "lucide-react";
 import DeleteConfirmModal from "@/components/DeleteConfirmation";
 import { useState } from "react";
@@ -69,14 +68,13 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: var(--background);
+  background: var(--card);
   position: relative;
   color: var(--text);
   padding: 10px 20px;
-  border: 1px solid var(--border);
   border-radius: 20px;
   box-shadow: 0 5px 5px var(--shadow);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(90px);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;

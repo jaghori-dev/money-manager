@@ -42,7 +42,7 @@ export default function Navigation() {
 
 const Wrapper = styled.nav`
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -63,7 +63,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   transition: 0.3s;
   color: ${(props) =>
-    props.active ? "var(--income-color)" : "var(--icons)"};
+    props.active ? "var(--income-color)" : "var(--text)"};
   &:hover {
     color: var(--text);
   }

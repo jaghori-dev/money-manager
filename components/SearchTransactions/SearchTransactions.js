@@ -36,7 +36,7 @@ const StyledInput = styled.input`
   padding: 10px 40px 10px 40px;
   border-radius: var(--radius-l);
   border: 1px solid var(--border);
-  background: var(--shadow);
+  background: var(--card);
   color: var(--text);
   outline: none;
 `;

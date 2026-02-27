@@ -48,7 +48,7 @@ const ButtonGroup = styled.div`
   gap: 10px;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   padding: 0.6rem 1.2rem;
   border-radius: var(--radius-s);
   border: none;
