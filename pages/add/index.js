@@ -27,7 +27,7 @@ export default function NewTransaction() {
       }
 
       const uploadResult = await uploadResponse.json();
-      receiptUrl = uploadResult.receiptUrl;
+      receiptUrl = uploadResult.secure_url;
     }
 
     const payload = {
