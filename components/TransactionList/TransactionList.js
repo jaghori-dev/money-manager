@@ -30,16 +30,23 @@ const StyledList = styled.ul`
   max-height: 70vh;
   overflow-y: auto;
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
+    height: 10px;
   }
   &::-webkit-scrollbar-track {
-    background: var(--scroll-bar-background);
-    border-radius: 4px;
+    background: transparent;
+    border-radius: 12px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--item-background);
-    border-radius: 4px;
-    border: 2px solid var(--scroll-bar-background);
+    background: var(--background);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: var(--scroll-bar-background);
   }
 `;
 const StyledLink = styled(Link)`
