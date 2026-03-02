@@ -6,11 +6,11 @@ export default createGlobalStyle`
     --radius-m: 20px;
     --radius-l: 50px;
     --radius-full: 100px;
-  }
-
-  .light {
     --background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
+    --balance-negative: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    --balance-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --balance-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     --card: rgba(0, 0, 0, 0.10);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -28,11 +28,14 @@ export default createGlobalStyle`
   }
 
   .dark {
-    --text: #000000;
+    --text: #ffffff;
+    --background: linear-gradient(135deg, #000000 0%, #3a473f 100%);
+    --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
     --primary-color: #102219;
     --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
     --main-color: #ffff;
     --expenses-color: #ff0505;
+    --card: rgba(151, 151, 151, 0.1);
     --icons: #aaa;
     --radius-full: 100px;
     --border: rgba(255, 255, 255, 0.39);
