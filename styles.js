@@ -17,7 +17,6 @@ export default createGlobalStyle`
     --text: #ffff;
     --primary-color: #102219;
     --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
-    --main-color: #ffff;
     --expenses-color: #ff0505;
     --icons: #aaa;
     --border: rgba(255, 255, 255, 0.39);
@@ -25,6 +24,7 @@ export default createGlobalStyle`
     --scroll-bar-background: #1a1a1a;
     --error-button-color: #e11d48;
     --hover-color: #be123c;
+    --nav-color: #dcdbdb;
   }
 
   .dark {
@@ -33,7 +33,6 @@ export default createGlobalStyle`
     --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
     --primary-color: #102219;
     --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
-    --main-color: #ffff;
     --expenses-color: #ff0505;
     --card: rgba(151, 151, 151, 0.1);
     --icons: #aaa;

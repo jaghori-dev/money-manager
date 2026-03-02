@@ -62,8 +62,7 @@ const StyledLink = styled(Link)`
   gap: 2px;
   text-decoration: none;
   transition: 0.3s;
-  color: ${(props) =>
-    props.active ? "var(--income-color)" : "var(--text)"};
+  color: ${(props) => (props.active ? "var(--text)" : "var(--nav-color)")};
   &:hover {
     color: var(--text);
   }

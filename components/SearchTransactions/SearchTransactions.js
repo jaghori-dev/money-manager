@@ -40,7 +40,7 @@ const StyledInput = styled.input`
   color: var(--text);
   outline: none;
   &::placeholder {
-    color: var(--search-placeholder);
+    color: var(--nav-color);
   }
 `;
 
