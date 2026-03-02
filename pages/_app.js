@@ -1,8 +1,9 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Navigation from "@/components/Navigation/Navigation";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import Login from "@/components/Login";
+import { useRouter } from "next/router";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -20,14 +21,27 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <GlobalStyle />
-      <Login />
-      <Component
-        {...pageProps}
-        transactions={reversedTransactions}
-        error={error}
-        isLoading={isLoading}
-      />
-      <Navigation />
+      <ProtectedRoute>
+        <Login />
+        <Component
+          {...pageProps}
+          transactions={reversedTransactions}
+          error={error}
+          isLoading={isLoading}
+        />
+        <Navigation />
+      </ProtectedRoute>
     </SessionProvider>
   );
+}
+//Component 
+function ProtectedRoute({ children }) {
+  const session = useSession();
+  console.log(session);
+  const router = useRouter();
+  if (session.status === "unauthenticated" && router.pathname !== "/login") {
+    router.push("/login");
+    return;
+  }
+  return children;
 }
