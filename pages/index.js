@@ -6,7 +6,6 @@ import styled from "styled-components";
 import SearchTransactions from "@/components/SearchTransactions/SearchTransactions";
 import { useState, useMemo } from "react";
 import Navigation from "@/components/Navigation/Navigation";
-import ToggleTheme from "@/components/ToggleTheme";
 
 export default function HomePage({ transactions, error, isLoading }) {
   const [search, setSearch] = useState("");
@@ -32,7 +31,6 @@ export default function HomePage({ transactions, error, isLoading }) {
   return (
     <Container>
       <Title>Money Manager App</Title>
-      <ToggleTheme />
       <TotalBalance transactions={transactions} />
       <SearchTransactions search={search} setSearch={setSearch} />
       <TransactionList transactions={filteredTransactions} />
