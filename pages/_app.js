@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation/Navigation";
 import { SessionProvider, useSession } from "next-auth/react";
 import Login from "@/components/Login";
 import { useRouter } from "next/router";
+import ToggleTheme from "@/components/ToggleTheme";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -22,6 +23,7 @@ export default function App({
     <SessionProvider session={session}>
       <GlobalStyle />
       <ProtectedRoute>
+        <ToggleTheme />
         <Login />
         <Component
           {...pageProps}
@@ -34,7 +36,7 @@ export default function App({
     </SessionProvider>
   );
 }
-//Component 
+//Component
 function ProtectedRoute({ children }) {
   const session = useSession();
   console.log(session);

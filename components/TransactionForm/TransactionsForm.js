@@ -32,71 +32,78 @@ export default function TransactionForm({
   }
 
   return (
- 
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledHeading>{formTitle}</StyledHeading>
-        <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
-        <Input
-          type="text"
-          name="title"
-          id="title"
-          defaultValue={defaultValues?.title}
-        />
-        <StyledLabel htmlFor="amount">Amount:</StyledLabel>
-        <Input
-          type="number"
-          id="amount"
-          name="amount"
-          defaultValue={defaultValues?.amount}
-        />
-        <Select id="category" name="category" defaultValue="category" required>
-          {categories.map((category) => {
-            return (
-              <option key={category._id} value={category.category}>
-                {category.category}
-              </option>
-            );
-          })}
-        </Select>
-        <StyledLabel htmlFor="date">Date:</StyledLabel>
-        <Input
-          type="date"
-          name="date"
-          id="date"
-          defaultValue={
-            defaultValues?.date ? new Date().toISOString().split("T")[0] : today
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledHeading>{formTitle}</StyledHeading>
+      <StyledLabel htmlFor="title">Transaction Name:</StyledLabel>
+      <Input
+        type="text"
+        name="title"
+        id="title"
+        defaultValue={defaultValues?.title}
+      />
+      <StyledLabel htmlFor="amount">Amount:</StyledLabel>
+      <Input
+        type="number"
+        id="amount"
+        name="amount"
+        defaultValue={defaultValues?.amount}
+      />
+      <Select id="category" name="category" defaultValue="category" required>
+        {categories.map((category) => {
+          return (
+            <option key={category._id} value={category.category}>
+              {category.category}
+            </option>
+          );
+        })}
+      </Select>
+      <StyledLabel htmlFor="date">Date:</StyledLabel>
+      <Input
+        type="date"
+        name="date"
+        id="date"
+        defaultValue={
+          defaultValues?.date ? new Date().toISOString().split("T")[0] : today
+        }
+      />
+      <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
+      {receiptErrorMessage ? (
+        <ReceiptErrorMessage>{receiptErrorMessage}</ReceiptErrorMessage>
+      ) : null}
+      <Input
+        id="receipt"
+        name="receipt"
+        type="file"
+        accept="image/*"
+        onChange={function (event) {
+          const selectedFile = event.target.files[0];
+
+          if (selectedFile) {
+            setReceiptFile(selectedFile);
+          } else {
+            setReceiptFile(null);
           }
-        />
-        <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
-        {receiptErrorMessage ? (
-          <ReceiptErrorMessage>{receiptErrorMessage}</ReceiptErrorMessage>
-        ) : null}
-        <Input
-          id="receipt"
-          name="receipt"
-          type="file"
-          accept="image/*"
-          onChange={function (event) {
-            const selectedFile = event.target.files[0];
-
-            if (selectedFile) {
-              setReceiptFile(selectedFile);
-            } else {
-              setReceiptFile(null);
-            }
-          }}
-        />
-        <Button>{buttonText}</Button>
-      </StyledForm>
-
+        }}
+      />
+      <Button>{buttonText}</Button>
+    </StyledForm>
   );
 }
 
 const Input = styled.input`
   height: 45px;
-  border:none;
+  border: none;
   border-radius: var(--radius-l);
   padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 export const StyledForm = styled.form`
