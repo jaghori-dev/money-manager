@@ -25,6 +25,7 @@ export default createGlobalStyle`
     --error-button-color: #e11d48;
     --hover-color: #be123c;
     --nav-color: #dcdbdb;
+    --loading-color: linear-gradient(135deg, #000000 0%, #3a473f 100%);
   }
 
   .dark {
@@ -43,6 +44,7 @@ export default createGlobalStyle`
     --error-button-color: #e11d48;
     --hover-color: #be123c;
     --nav-color: #969696;
+    --loading-color: linear-gradient(135deg, #11998e 0%, #26c864 100%);
   }
 
   *,

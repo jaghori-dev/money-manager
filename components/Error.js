@@ -15,7 +15,7 @@ export default function Error({ message, onRetry }) {
 }
 
 const Wrapper = styled.div`
-  background-color: var(--text);
+  background-color: var(--background);
   min-height: 100vh;
   display: flex;
   justify-content: center;
