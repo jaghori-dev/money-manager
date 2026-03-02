@@ -21,7 +21,7 @@ export default createGlobalStyle`
     --icons: #aaa;
     --border: rgba(255, 255, 255, 0.39);
     --search-placeholder: rgb(183, 183, 183);
-    --scroll-bar-background: #1a1a1a;
+    --scroll-bar-background: #38ef7d;
     --error-button-color: #e11d48;
     --hover-color: #be123c;
     --nav-color: #dcdbdb;
@@ -38,7 +38,7 @@ export default createGlobalStyle`
     --icons: #aaa;
     --radius-full: 100px;
     --border: rgba(255, 255, 255, 0.39);
-    --search-placeholder: rgb(183, 183, 183)
+    --search-placeholder: rgb(183, 183, 183);
     --scroll-bar-background: #1a1a1a;
     --error-button-color: #e11d48;
     --hover-color: #be123c;
