@@ -8,7 +8,7 @@ export default createGlobalStyle`
     --radius-full: 100px;
   }
 
-  body.light {
+  .light {
     --background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
     --card: rgba(0, 0, 0, 0.10);
@@ -27,13 +27,11 @@ export default createGlobalStyle`
     --hover-color: #be123c;
   }
 
-  body.dark {
+  .dark {
     --text: #000000;
     --primary-color: #102219;
     --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
     --main-color: #ffff;
-    // --income-color: #255e08;
-    // --income-color: #ffff;
     --expenses-color: #ff0505;
     --icons: #aaa;
     --radius-full: 100px;
