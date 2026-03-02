@@ -2,6 +2,14 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
+    --radius-s: 12px;
+    --radius-m: 20px;
+    --radius-l: 50px;
+    --radius-full: 100px;
+  }
+
+  body.light {
+    --background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     --item-background: linear-gradient(135deg, #11998e 0%, #26c864 100%);
     --card: rgba(0, 0, 0, 0.10);
   backdrop-filter: blur(10px);
@@ -10,21 +18,30 @@ export default createGlobalStyle`
     --primary-color: #102219;
     --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
     --main-color: #ffff;
+    --expenses-color: #ff0505;
+    --icons: #aaa;
+    --border: rgba(255, 255, 255, 0.39);
+    --search-placeholder: rgb(183, 183, 183);
+    --scroll-bar-background: #1a1a1a;
+    --error-button-color: #e11d48;
+    --hover-color: #be123c;
+  }
+
+  body.dark {
+    --text: #000000;
+    --primary-color: #102219;
+    --shadow: 0 10px 30px rgba(93, 87, 87, 0.4);
+    --main-color: #ffff;
     // --income-color: #255e08;
     // --income-color: #ffff;
     --expenses-color: #ff0505;
     --icons: #aaa;
-    --radius-s: 12px;
-    --radius-m: 20px;
-    --radius-l: 50px;
     --radius-full: 100px;
     --border: rgba(255, 255, 255, 0.39);
-
+    --search-placeholder: rgb(183, 183, 183)
     --scroll-bar-background: #1a1a1a;
-
     --error-button-color: #e11d48;
     --hover-color: #be123c;
-  
   }
 
   *,
@@ -36,7 +53,9 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    background: var(--background);
     padding-bottom: 50px;
+    color: var(--text);
+    transition: all 0.3s ease;
   }
 `;

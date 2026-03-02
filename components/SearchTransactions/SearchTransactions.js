@@ -39,6 +39,9 @@ const StyledInput = styled.input`
   background: var(--card);
   color: var(--text);
   outline: none;
+  &::placeholder {
+    color: var(--search-placeholder);
+  }
 `;
 
 const ClearButton = styled.button`
