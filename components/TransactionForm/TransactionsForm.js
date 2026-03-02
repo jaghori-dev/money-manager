@@ -91,10 +91,11 @@ export default function TransactionForm({
 }
 
 const Input = styled.input`
-  height: 44px;
-  padding: 0 18px;
+  height: 45px;
+  border: none;
+  border-radius: var(--radius-l);
+  padding: 10px;
   font-size: 14px;
-  border-radius: var(--radius-1);
   cursor: pointer;
   transition: all 0.2s ease;
   &:hover {
