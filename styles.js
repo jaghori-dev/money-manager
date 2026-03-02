@@ -42,6 +42,7 @@ export default createGlobalStyle`
     --scroll-bar-background: #1a1a1a;
     --error-button-color: #e11d48;
     --hover-color: #be123c;
+    --nav-color: #969696;
   }
 
   *,
