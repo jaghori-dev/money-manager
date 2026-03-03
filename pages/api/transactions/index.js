@@ -2,18 +2,22 @@ import dbConnect from "@/db/connect";
 import Transaction from "@/db/models/Transaction";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
+import { getToken } from "next-auth/jwt";
 
 export default async function handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
   await dbConnect();
+  const token = await getToken({ req: request });
+  const userId = token?.sub;
   if (request.method === "GET") {
     try {
       if (session) {
-        const transactions = await Transaction.find();
+        const transactions = await Transaction.find({ owner: userId });
         response.status(200).json(transactions);
         return;
       } else {
-        response.status(401).json({ status: "Not authorized" });
+        const transactions = await Transaction.find({ owner: "default" });
+        response.status(200).json(transactions);
       }
     } catch (error) {
       console.error(error);
@@ -24,7 +28,7 @@ export default async function handler(request, response) {
     try {
       if (session) {
         const newTransaction = request.body;
-        await Transaction.create(newTransaction);
+        await Transaction.create({ ...newTransaction, owner: userId });
         response.status(201).json({ status: "Transaction created" });
         return;
       } else {
