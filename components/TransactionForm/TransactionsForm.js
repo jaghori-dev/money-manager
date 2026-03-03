@@ -48,6 +48,8 @@ export default function TransactionForm({
         type="number"
         id="amount"
         name="amount"
+        step="0.01"
+        inputMode="decimal"
         defaultValue={defaultValues?.amount}
       />
       <Select id="category" name="category" defaultValue="category" required>
