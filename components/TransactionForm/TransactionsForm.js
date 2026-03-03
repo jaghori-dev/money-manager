@@ -2,6 +2,8 @@ import styled from "styled-components";
 import useSWR from "swr";
 import { useState } from "react";
 import { Button } from "../TransactionList/TransactionItem/TransactionItem";
+import Loading from "../Loading";
+import Error from "../Error";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
@@ -21,9 +23,9 @@ export default function TransactionForm({
     isLoading,
   } = useSWR("/api/categories", fetcher);
 
-  if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <p>error</p>;
-  if (!categories) return <h1>somthing went wrong</h1>;
+  if (isLoading) return <Loading />;
+  if (error) return <Error />;
+  if (!categories) return <h1>something went wrong</h1>;
 
   function handleSubmit(event) {
     event.preventDefault();
