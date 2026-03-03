@@ -1,3 +1,19 @@
-export default function Login(){
-    return <p>this is login page</p>
+import { Container } from ".";
+import LoginButton from "@/components/LoginButton";
+import { useSession } from "next-auth/react";
+
+export default function Login() {
+  const session = useSession();
+  console.log(session);
+  return (
+    <Container>
+      {session.status === "unauthenticated" ? (
+        <h3>Please login to see your transactions</h3>
+      ) : (
+        <h3>log out</h3>
+      )}
+
+      <LoginButton />
+    </Container>
+  );
 }
