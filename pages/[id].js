@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import TransactionItem from "@/components/TransactionList/TransactionItem/TransactionItem";
 import useSWR, { mutate } from "swr";

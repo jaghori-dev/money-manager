@@ -1,6 +1,5 @@
 import dbConnect from "@/db/connect";
 import Transaction from "@/db/models/Transaction";
-import useSWR from "swr";
 
 export default async function handler(request, response) {
   await dbConnect();
