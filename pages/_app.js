@@ -18,6 +18,7 @@ export default function App({
     isLoading,
   } = useSWR("/api/transactions", fetcher);
 
+
   return (
     <SessionProvider session={session}>
       <GlobalStyle />

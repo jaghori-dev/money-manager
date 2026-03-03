@@ -10,7 +10,7 @@ export default function HomePage({ transactions, error, isLoading }) {
   const [search, setSearch] = useState("");
 
   const filteredTransactions = useMemo(() => {
-    if (!transactions) return [];
+    if (!Array.isArray(transactions)) return [];
 
     return transactions.filter((transaction) =>
       transaction.title.toLowerCase().includes(search.toLowerCase())
