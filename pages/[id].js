@@ -1,10 +1,12 @@
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import TransactionItem from "@/components/TransactionList/TransactionItem/TransactionItem";
 import useSWR, { mutate } from "swr";
 import TransactionForm from "@/components/TransactionForm/TransactionsForm";
 import { useState } from "react";
 import { Container } from ".";
+import Loading from "@/components/Loading";
+import Error from "@/components/Error";
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function Details() {
   const [onEdit, setOnEdit] = useState(false);
@@ -17,10 +19,10 @@ export default function Details() {
     isLoading,
   } = useSWR(id ? `/api/transactions/${id}` : null, fetcher);
 
-  if (!id) return <h1>Loading...</h1>;
-  if (isLoading) return <h2>Loading...</h2>;
-  if (error) return <p>Error loading transaction</p>;
-  if (!transaction) return <h2>transaction not found</h2>;
+  if (!id) return <Loading />;
+  if (isLoading) return <Loading />;
+  if (error) return <Error />;
+  if (!transaction) return <h2>Transaction not found</h2>;
 
   function toggleEdit() {
     setOnEdit((prev) => !prev);
@@ -66,7 +68,7 @@ export default function Details() {
           defaultValues={transaction}
           buttonText="Update transaction"
           onSubmit={handleUpdate}
-          formTitle='Edit transaction'
+          formTitle="Edit transaction"
         />
       )}
     </Container>

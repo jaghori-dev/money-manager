@@ -5,7 +5,6 @@ import Loading from "@/components/Loading";
 import styled from "styled-components";
 import SearchTransactions from "@/components/SearchTransactions/SearchTransactions";
 import { useState, useMemo } from "react";
-import Navigation from "@/components/Navigation/Navigation";
 
 export default function HomePage({ transactions, error, isLoading }) {
   const [search, setSearch] = useState("");
