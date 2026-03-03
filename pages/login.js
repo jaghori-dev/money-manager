@@ -4,7 +4,6 @@ import { useSession } from "next-auth/react";
 
 export default function Login() {
   const session = useSession();
-  console.log(session);
   return (
     <Container>
       {session.status === "unauthenticated" ? (

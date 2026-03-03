@@ -6,34 +6,35 @@ import { getToken } from "next-auth/jwt";
 
 export default async function handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
+
   await dbConnect();
   const token = await getToken({ req: request });
-  const userId = token?.sub;
+
   if (request.method === "GET") {
     try {
-      if (session) {
-        const transactions = await Transaction.find({ owner: userId });
-        response.status(200).json(transactions);
-        return;
-      } else {
-        const transactions = await Transaction.find({ owner: "default" });
-        response.status(200).json(transactions);
-      }
+      const owner = token?.sub || "default";
+      const transactions = await Transaction.find({ owner });
+      response.status(200).json(transactions);
+      return;
     } catch (error) {
       console.error(error);
-      return response.status(400).json(error.message);
+      response.status(400).json(error.message);
+      return;
     }
+  }
+  if (!session) {
+    response.status(401).json({ status: "Not authorized" });
+    return;
   }
   if (request.method === "POST") {
     try {
-      if (session) {
-        const newTransaction = request.body;
-        await Transaction.create({ ...newTransaction, owner: userId });
-        response.status(201).json({ status: "Transaction created" });
-        return;
-      } else {
-        response.status(401).json({ status: "Not authorized" });
-      }
+      const newTransaction = request.body;
+      await Transaction.create({
+        ...newTransaction,
+        owner: token?.sub,
+      });
+      response.status(201).json({ status: "Transaction created" });
+      return;
     } catch (error) {
       console.error(error);
       response.status(400).json({ status: error.message });
