@@ -1,9 +1,9 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Navigation from "@/components/Navigation/Navigation";
-import { SessionProvider, useSession } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import Login from "@/components/Login";
-import { useRouter } from "next/router";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import ToggleTheme from "@/components/ToggleTheme";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -17,7 +17,6 @@ export default function App({
     error,
     isLoading,
   } = useSWR("/api/transactions", fetcher);
-  const reversedTransactions = transactions?.slice().reverse();
 
   return (
     <SessionProvider session={session}>
@@ -27,7 +26,7 @@ export default function App({
         <Login />
         <Component
           {...pageProps}
-          transactions={reversedTransactions}
+          transactions={transactions}
           error={error}
           isLoading={isLoading}
         />
@@ -36,14 +35,4 @@ export default function App({
     </SessionProvider>
   );
 }
-//Component
-function ProtectedRoute({ children }) {
-  const session = useSession();
-  console.log(session);
-  const router = useRouter();
-  if (session.status === "unauthenticated" && router.pathname !== "/login") {
-    router.push("/login");
-    return;
-  }
-  return children;
-}
+
