@@ -2,7 +2,7 @@ import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Navigation from "@/components/Navigation/Navigation";
 import { SessionProvider } from "next-auth/react";
-import Login from "@/components/Login";
+import Login from "@/components/LoginButton";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ToggleTheme from "@/components/ToggleTheme";
 
@@ -24,7 +24,7 @@ export default function App({
       <GlobalStyle />
       <ProtectedRoute>
         <ToggleTheme />
-        <Login />
+        {/* <Login /> */}
         <Component
           {...pageProps}
           transactions={transactions}
