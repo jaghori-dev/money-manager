@@ -8,6 +8,7 @@ const transactionSchema = new Schema(
     category: { type: String },
     date: { type: Date, default: Date.now },
     receiptUrl: { type: String, default: "" },
+    owner: { type: String, required: true },
   },
   { timestamps: true }
 );
