@@ -18,13 +18,11 @@ export default function App({
     isLoading,
   } = useSWR("/api/transactions", fetcher);
 
-
   return (
     <SessionProvider session={session}>
       <GlobalStyle />
       <ProtectedRoute>
         <ToggleTheme />
-        {/* <Login /> */}
         <Component
           {...pageProps}
           transactions={transactions}
@@ -36,4 +34,3 @@ export default function App({
     </SessionProvider>
   );
 }
-
