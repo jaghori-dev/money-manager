@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Search } from "lucide-react";
-import Error from "next/error";
 
 export default function SearchTransactions({ search, setSearch }) {
   return (
