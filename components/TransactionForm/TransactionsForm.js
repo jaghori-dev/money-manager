@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "../TransactionList/TransactionItem/TransactionItem";
 import Loading from "../Loading";
 import Error from "../Error";
+import { useRouter } from "next/router";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
@@ -23,14 +24,16 @@ export default function TransactionForm({
     isLoading,
   } = useSWR("/api/categories", fetcher);
 
+  const router = useRouter();
+
   if (isLoading) return <Loading />;
   if (error) return <Error />;
   if (!categories) return <h1>something went wrong</h1>;
 
   function handleSubmit(event) {
     event.preventDefault();
-
     onSubmit(event, receiptFile);
+    router.push("/");
   }
 
   return (
