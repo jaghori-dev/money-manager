@@ -2,10 +2,35 @@ import styled from "styled-components";
 import { Container } from "../index";
 import ToggleTheme from "@/components/ToggleTheme";
 import LoginButton from "@/components/LoginButton";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import { useState } from "react";
+import DeleteConfirmation from "@/components/DeleteConfirmation";
+import { Trash2 } from "lucide-react";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  async function handleDeleteProfile() {
+    try {
+      const response = await fetch("/api/user/delete", {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        await signOut({ callbackUrl: "/login" });
+      } else {
+        alert("Failed to delete profile");
+      }
+    } catch (error) {
+      console.error("Error deleting profile:", error);
+      alert("Error deleting profile");
+    }
+  }
+
+  function toggleDeleteConfirm() {
+    setShowConfirm((prev) => !prev);
+  }
 
   return (
     <Container>
@@ -29,9 +54,23 @@ export default function ProfilePage() {
             <ToggleTheme />
           </ThemeToggleWrapper>
         </SettingsSection>
-        <SettingsSection>
+        <ButtonsRow>
+          <DeleteButtonWrapper>
+            <DeleteButton onClick={toggleDeleteConfirm}>
+              <DeleteButtonContent>
+                <Trash2 size={16} />
+                Delete Profile
+              </DeleteButtonContent>
+            </DeleteButton>
+            {showConfirm && (
+              <DeleteConfirmation
+                onCancel={toggleDeleteConfirm}
+                onConfirm={handleDeleteProfile}
+              />
+            )}
+          </DeleteButtonWrapper>
           <LoginButton />
-        </SettingsSection>
+        </ButtonsRow>
       </ProfileCard>
     </Container>
   );
@@ -107,4 +146,41 @@ const SettingsLabel = styled.span`
 const ThemeToggleWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const ButtonsRow = styled.div`
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+`;
+
+const DeleteButtonWrapper = styled.div`
+  position: relative;
+  flex: 1;
+`;
+
+const DeleteButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+`;
+
+const DeleteButton = styled.button`
+  width: 100% !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--error-button-color);
+  cursor: pointer;
+  background: transparent;
+  color: var(--error-button-color);
+  font-weight: 600;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+  transition: 0.2s ease;
+
+  &:hover {
+    background: var(--error-button-color);
+    color: var(--text);
+  }
 `;
