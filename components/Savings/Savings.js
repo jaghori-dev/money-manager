@@ -50,7 +50,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: var(--card);
+  background: var(--background);
   position: relative;
   color: var(--text);
   padding: 10px 20px;
