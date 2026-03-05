@@ -16,8 +16,10 @@ export default function TotalBalance({ transactions }) {
     if (value < 0) return "negative";
     return "neutral";
   }
-
-  const balance = (transactions ?? []).reduce((sum, transaction) => {
+  const filteredTransaction = (transactions ?? []).filter(
+    (transaction) => transaction.category !== "Savings"
+  );
+  const balance = filteredTransaction.reduce((sum, transaction) => {
     const newSum = sum + transaction.amount;
     return newSum;
   }, 0);

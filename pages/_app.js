@@ -17,7 +17,7 @@ export default function App({
     error,
     isLoading,
   } = useSWR("/api/transactions", fetcher);
-
+  const transactionsData = Array.isArray(transactions) ? transactions : [];
   return (
     <SessionProvider session={session}>
       <GlobalStyle />
@@ -25,7 +25,7 @@ export default function App({
         <ToggleTheme />
         <Component
           {...pageProps}
-          transactions={transactions}
+          transactions={transactionsData}
           error={error}
           isLoading={isLoading}
         />
