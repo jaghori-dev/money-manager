@@ -9,24 +9,68 @@ export default function TransactionList({
   if (!transactions || transactions.length === 0) {
     return <h2>{emptyMessage}</h2>;
   }
+  function getDateLabel(date) {
+    const transactionDate = new Date(date);
+    const today = new Date();
+    const yesterday = new Date();
+
+    yesterday.setDate(today.getDate() - 1);
+
+    if (transactionDate.toDateString() === today.toDateString()) {
+      return "Today";
+    }
+
+    if (transactionDate.toDateString() === yesterday.toDateString()) {
+      return "Yesterday";
+    }
+
+    return transactionDate.toLocaleDateString("en-US", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  }
+  const sorted = [...transactions].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+  const groupedTransactions = sorted.reduce((groups, transaction) => {
+    const label = getDateLabel(transaction.date);
+
+    if (!groups[label]) {
+      groups[label] = [];
+    }
+
+    groups[label].push(transaction);
+
+    return groups;
+  }, {});
+
   return (
-    <StyledList>
-      {transactions.map((transaction) => (
-        <StyledLink key={transaction._id} href={transaction._id}>
-          <TransactionItem key={transaction._id} transaction={transaction} />
-        </StyledLink>
+    <>
+      {Object.entries(groupedTransactions).map(([date, items]) => (
+        <StyledList key={date}>
+          <StyledH>{date}</StyledH>
+          {items.map((transaction) => (
+            <StyledLink key={transaction._id} href={transaction._id}>
+              <TransactionItem
+                key={transaction._id}
+                transaction={transaction}
+              />
+            </StyledLink>
+          ))}
+        </StyledList>
       ))}
-    </StyledList>
+    </>
   );
 }
 
 const StyledList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   max-height: 70vh;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -51,4 +95,9 @@ const StyledList = styled.ul`
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+const StyledH = styled.h4`
+  text-align: left;
+  margin:10px;
+  
 `;
