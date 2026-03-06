@@ -120,7 +120,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: 10px;
   width: 80%;
-  margin: auto;
+  margin: 0 auto 10px auto;
   color: var(--text);
 `;
 export const StyledHeading = styled.h2`
