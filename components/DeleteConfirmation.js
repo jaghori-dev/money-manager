@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function DeleteConfirmModal({ onConfirm, onCancel }) {
+export default function DeleteConfirmModal({ onConfirm, onCancel, message }) {
   return (
     <Overlay>
       <Modal>
-        <p>Are you sure you want to delete this transaction?</p>
+        <p>Are you sure you want to delete this {message}?</p>
         <ButtonGroup>
           <Button onClick={onCancel}>Cancel</Button>
           <DeleteButton onClick={onConfirm}>Delete</DeleteButton>
