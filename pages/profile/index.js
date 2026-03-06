@@ -7,7 +7,7 @@ import { useState } from "react";
 import DeleteConfirmation from "@/components/DeleteConfirmation";
 import { Trash2 } from "lucide-react";
 
-export default function ProfilePage({ transactions }) {
+export default function ProfilePage() {
   const { data: session } = useSession();
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -45,12 +45,6 @@ export default function ProfilePage({ transactions }) {
             <InfoLabel>Email:</InfoLabel>
             <InfoValue>{session.user.email || "N/A"}</InfoValue>
           </UserInfoSection>
-          <UserInfoSection>
-            <InfoLabel>Total Balance:</InfoLabel>
-            <InfoValue>
-              {((transactions ?? []).reduce((sum, t) => sum + t.amount, 0)).toFixed(2)} €
-            </InfoValue>
-          </UserInfoSection>
         </UserInfoCard>
       )}
       <ProfileCard>
@@ -61,20 +55,22 @@ export default function ProfilePage({ transactions }) {
           </ThemeToggleWrapper>
         </SettingsSection>
         <ButtonsRow>
-          <DeleteButtonWrapper>
-            <DeleteButton onClick={toggleDeleteConfirm}>
-              <DeleteButtonContent>
-                <Trash2 size={16} />
-                Delete Profile
-              </DeleteButtonContent>
-            </DeleteButton>
-            {showConfirm && (
-              <DeleteConfirmation
-                onCancel={toggleDeleteConfirm}
-                onConfirm={handleDeleteProfile}
-              />
-            )}
-          </DeleteButtonWrapper>
+          {session?.user && (
+            <DeleteButtonWrapper>
+              <DeleteButton onClick={toggleDeleteConfirm}>
+                <DeleteButtonContent>
+                  <Trash2 size={16} />
+                  Delete Profile
+                </DeleteButtonContent>
+              </DeleteButton>
+              {showConfirm && (
+                <DeleteConfirmation
+                  onCancel={toggleDeleteConfirm}
+                  onConfirm={handleDeleteProfile}
+                />
+              )}
+            </DeleteButtonWrapper>
+          )}
           <LoginButton />
         </ButtonsRow>
       </ProfileCard>
