@@ -24,8 +24,6 @@ export default function TransactionForm({
     isLoading,
   } = useSWR("/api/categories", fetcher);
 
-  const router = useRouter();
-
   if (isLoading) return <Loading />;
   if (error) return <Error />;
   if (!categories) return <h1>something went wrong</h1>;
@@ -33,8 +31,6 @@ export default function TransactionForm({
   function handleSubmit(event) {
     event.preventDefault();
     onSubmit(event, receiptFile);
-    router.push("/");
-    router.reload();
   }
 
   return (
