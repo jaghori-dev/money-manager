@@ -22,10 +22,6 @@ export default function TransactionForm({
     isLoading,
   } = useSWR("/api/categories", fetcher);
 
-  const date = defaultValues?.date
-    ? new Date(defaultValues.date).toISOString().split("T")[0]
-    : today;
-
   if (isLoading) return <Loading />;
   if (error) return <Error />;
   if (!categories) return <h1>something went wrong</h1>;
@@ -69,7 +65,16 @@ export default function TransactionForm({
         })}
       </Select>
       <StyledLabel htmlFor="date">Date:</StyledLabel>
-      <Input type="date" name="date" id="date" defaultValue={date} />
+      <Input
+        type="date"
+        name="date"
+        id="date"
+        defaultValue={
+          defaultValues?.date
+            ? new Date(defaultValues.date).toISOString().split("T")[0]
+            : today
+        }
+      />
       <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
       {receiptErrorMessage ? (
         <ReceiptErrorMessage>{receiptErrorMessage}</ReceiptErrorMessage>
