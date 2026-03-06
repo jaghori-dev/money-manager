@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "../TransactionList/TransactionItem/TransactionItem";
 import Loading from "../Loading";
 import Error from "../Error";
-import { useRouter } from "next/router";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
@@ -17,14 +16,11 @@ export default function TransactionForm({
   receiptErrorMessage,
 }) {
   const [receiptFile, setReceiptFile] = useState(null);
-
   const {
     data: categories,
     error,
     isLoading,
   } = useSWR("/api/categories", fetcher);
-
-  const router = useRouter();
 
   if (isLoading) return <Loading />;
   if (error) return <Error />;
@@ -33,7 +29,6 @@ export default function TransactionForm({
   function handleSubmit(event) {
     event.preventDefault();
     onSubmit(event, receiptFile);
-    router.push("/");
   }
 
   return (
@@ -55,7 +50,12 @@ export default function TransactionForm({
         inputMode="decimal"
         defaultValue={defaultValues?.amount}
       />
-      <Select id="category" name="category" defaultValue="category" required>
+      <Select
+        id="category"
+        name="category"
+        defaultValue={defaultValues?.category}
+        required
+      >
         {categories.map((category) => {
           return (
             <option key={category._id} value={category.category}>
@@ -70,7 +70,9 @@ export default function TransactionForm({
         name="date"
         id="date"
         defaultValue={
-          defaultValues?.date ? new Date().toISOString().split("T")[0] : today
+          defaultValues?.date
+            ? new Date(defaultValues.date).toISOString().split("T")[0]
+            : today
         }
       />
       <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
@@ -118,7 +120,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: 10px;
   width: 80%;
-  margin: auto;
+  margin: 0 auto 10px auto;
   color: var(--text);
 `;
 export const StyledHeading = styled.h2`

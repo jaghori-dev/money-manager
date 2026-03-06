@@ -4,7 +4,7 @@ export default function DeleteConfirmModal({ onConfirm, onCancel, message }) {
   return (
     <Overlay>
       <Modal>
-        <p>Are you sure you want to delete this {message}?</p>
+        <p>Are you sure you want to delete {message}?</p>
         <ButtonGroup>
           <Button onClick={onCancel}>Cancel</Button>
           <DeleteButton onClick={onConfirm}>Delete</DeleteButton>

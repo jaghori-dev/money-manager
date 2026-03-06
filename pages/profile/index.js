@@ -6,8 +6,9 @@ import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import DeleteConfirmation from "@/components/DeleteConfirmation";
 import { Trash2 } from "lucide-react";
+import Savings from "@/components/Savings/Savings";
 
-export default function ProfilePage() {
+export default function ProfilePage({ transactions }) {
   const { data: session } = useSession();
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -45,6 +46,21 @@ export default function ProfilePage() {
             <InfoLabel>Email:</InfoLabel>
             <InfoValue>{session.user.email || "N/A"}</InfoValue>
           </UserInfoSection>
+          <UserInfoSection>
+            <InfoLabel>Total Balance:</InfoLabel>
+            <InfoValue>
+              {(transactions ?? [])
+                .reduce((sum, t) => sum + t.amount, 0)
+                .toFixed(2)}{" "}
+              €
+            </InfoValue>
+          </UserInfoSection>
+          <UserInfoSection>
+            <InfoLabel>Saved money: </InfoLabel>
+            <InfoValue>
+              <Savings transactions={transactions} />
+            </InfoValue>
+          </UserInfoSection>
         </UserInfoCard>
       )}
       <ProfileCard>
@@ -72,7 +88,7 @@ export default function ProfilePage() {
             <DeleteConfirmation
               onCancel={toggleDeleteConfirm}
               onConfirm={handleDeleteProfile}
-              message="profile"
+              message="your profile"
             />
           </ModalWrapper>
         )}

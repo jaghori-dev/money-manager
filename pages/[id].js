@@ -39,7 +39,9 @@ export default function Details() {
       body: JSON.stringify(updateTransaction),
     });
     if (response.ok) {
-      mutate(`/api/transactions/${id}`);
+      await mutate(`/api/transactions/${id}`);
+      await mutate("/api/transactions");
+      router.push("/");
     }
     setOnEdit((prev) => !prev);
   }

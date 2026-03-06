@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { X } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import DeleteConfirmModal from "@/components/DeleteConfirmation";
 import { useState } from "react";
 
@@ -37,7 +37,7 @@ export default function TransactionItem({
             <DeleteConfirmModal
               onCancel={toggleDeleteConfirm}
               onConfirm={onConfirm}
-              message="transaction"
+              message="this transaction"
             />
           )}
           <DetailsRow>
@@ -56,14 +56,20 @@ export default function TransactionItem({
   );
 }
 
-const DeleteIcon = styled(X)`
-  color: red;
+const DeleteIcon = styled(Trash2)`
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  bottom: 10px;
   cursor: pointer;
-  background-color: var(--text);
   border-radius: var(--radius-full);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  &:hover {
+    color: red;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 5px var(--shadow-color);
+  }
 `;
 const Card = styled.div`
   display: flex;

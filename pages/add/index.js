@@ -2,10 +2,12 @@ import TransactionsForm from "@/components/TransactionForm/TransactionsForm";
 import useSWR from "swr";
 import { Container } from "..";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function NewTransaction() {
   const { mutate } = useSWR("/api/transactions");
   const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(event, receiptFile) {
     event.preventDefault();
@@ -54,6 +56,7 @@ export default function NewTransaction() {
     }
     mutate();
     event.target.reset();
+    router.push("/");
   }
   return (
     <Container>
