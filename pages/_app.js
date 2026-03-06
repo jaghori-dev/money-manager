@@ -4,7 +4,6 @@ import Navigation from "@/components/Navigation/Navigation";
 import { SessionProvider } from "next-auth/react";
 import Login from "@/components/LoginButton";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import ToggleTheme from "@/components/ToggleTheme";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -22,7 +21,6 @@ export default function App({
     <SessionProvider session={session}>
       <GlobalStyle />
       <ProtectedRoute>
-        <ToggleTheme />
         <Component
           {...pageProps}
           transactions={transactionsData}

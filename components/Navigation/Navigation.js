@@ -1,4 +1,4 @@
-import { House, CirclePlus } from "lucide-react";
+import { House, CirclePlus, User } from "lucide-react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,6 +14,12 @@ const navItems = [
     path: "/add",
     label: "Add",
     icon: CirclePlus,
+    size: 25,
+  },
+  {
+    path: "/profile",
+    label: "Profile",
+    icon: User,
     size: 25,
   },
 ];
