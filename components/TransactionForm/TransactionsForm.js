@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "../TransactionList/TransactionItem/TransactionItem";
 import Loading from "../Loading";
 import Error from "../Error";
-import { useRouter } from "next/router";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const today = new Date().toISOString().split("T")[0];
@@ -17,12 +16,15 @@ export default function TransactionForm({
   receiptErrorMessage,
 }) {
   const [receiptFile, setReceiptFile] = useState(null);
-
   const {
     data: categories,
     error,
     isLoading,
   } = useSWR("/api/categories", fetcher);
+
+  const date = defaultValues?.date
+    ? new Date(defaultValues.date).toISOString().split("T")[0]
+    : today;
 
   if (isLoading) return <Loading />;
   if (error) return <Error />;
@@ -67,14 +69,7 @@ export default function TransactionForm({
         })}
       </Select>
       <StyledLabel htmlFor="date">Date:</StyledLabel>
-      <Input
-        type="date"
-        name="date"
-        id="date"
-        defaultValue={
-          defaultValues?.date ? new Date().toISOString().split("T")[0] : today
-        }
-      />
+      <Input type="date" name="date" id="date" defaultValue={date} />
       <StyledLabel htmlFor="receipt">Attach receipt:</StyledLabel>
       {receiptErrorMessage ? (
         <ReceiptErrorMessage>{receiptErrorMessage}</ReceiptErrorMessage>
