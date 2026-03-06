@@ -52,7 +52,12 @@ export default function TransactionForm({
         inputMode="decimal"
         defaultValue={defaultValues?.amount}
       />
-      <Select id="category" name="category" defaultValue="category" required>
+      <Select
+        id="category"
+        name="category"
+        defaultValue={defaultValues?.category}
+        required
+      >
         {categories.map((category) => {
           return (
             <option key={category._id} value={category.category}>
