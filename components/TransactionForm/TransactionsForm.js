@@ -34,6 +34,7 @@ export default function TransactionForm({
     event.preventDefault();
     onSubmit(event, receiptFile);
     router.push("/");
+    router.reload();
   }
 
   return (

@@ -6,8 +6,9 @@ import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import DeleteConfirmation from "@/components/DeleteConfirmation";
 import { Trash2 } from "lucide-react";
+import Savings from "@/components/Savings/Savings";
 
-export default function ProfilePage() {
+export default function ProfilePage({ transactions }) {
   const { data: session } = useSession();
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -77,6 +78,9 @@ export default function ProfilePage() {
           </ModalWrapper>
         )}
       </ProfileCard>
+      <SavingsSection>
+        <Savings transactions={transactions} />
+      </SavingsSection>
     </Container>
   );
 }
@@ -194,4 +198,11 @@ const DeleteButton = styled.button`
     background: var(--error-button-color);
     color: var(--text);
   }
+`;
+
+const SavingsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
 `;
