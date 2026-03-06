@@ -41,6 +41,7 @@ export default function Details() {
     if (response.ok) {
       await mutate(`/api/transactions/${id}`);
       await mutate("/api/transactions");
+      router.push("/");
     }
     setOnEdit((prev) => !prev);
   }
