@@ -18,14 +18,7 @@ export default function Savings({ transactions }) {
     return newSum;
   }, 0);
 
-  return (
-    <Card>
-      <Row>
-        <Title>Saved Money</Title>
-        <Amount>{formatCurrency(savedMoney)}</Amount>
-      </Row>
-    </Card>
-  );
+  return <span>{formatCurrency(savedMoney)}</span>;
 }
 
 const Title = styled.h2`

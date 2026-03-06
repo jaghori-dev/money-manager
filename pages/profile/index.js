@@ -46,6 +46,21 @@ export default function ProfilePage({ transactions }) {
             <InfoLabel>Email:</InfoLabel>
             <InfoValue>{session.user.email || "N/A"}</InfoValue>
           </UserInfoSection>
+          <UserInfoSection>
+            <InfoLabel>Total Balance:</InfoLabel>
+            <InfoValue>
+              {(transactions ?? [])
+                .reduce((sum, t) => sum + t.amount, 0)
+                .toFixed(2)}{" "}
+              €
+            </InfoValue>
+          </UserInfoSection>
+          <UserInfoSection>
+            <InfoLabel>Saved money: </InfoLabel>
+            <InfoValue>
+              <Savings transactions={transactions} />
+            </InfoValue>
+          </UserInfoSection>
         </UserInfoCard>
       )}
       <ProfileCard>
@@ -73,14 +88,11 @@ export default function ProfilePage({ transactions }) {
             <DeleteConfirmation
               onCancel={toggleDeleteConfirm}
               onConfirm={handleDeleteProfile}
-              message="profile"
+              message="your profile"
             />
           </ModalWrapper>
         )}
       </ProfileCard>
-      <SavingsSection>
-        <Savings transactions={transactions} />
-      </SavingsSection>
     </Container>
   );
 }
@@ -198,11 +210,4 @@ const DeleteButton = styled.button`
     background: var(--error-button-color);
     color: var(--text);
   }
-`;
-
-const SavingsSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: 20px auto;
 `;
