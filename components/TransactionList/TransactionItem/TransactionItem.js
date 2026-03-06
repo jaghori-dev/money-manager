@@ -37,6 +37,7 @@ export default function TransactionItem({
             <DeleteConfirmModal
               onCancel={toggleDeleteConfirm}
               onConfirm={onConfirm}
+              message="transaction"
             />
           )}
           <DetailsRow>

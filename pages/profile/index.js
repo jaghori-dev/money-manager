@@ -63,16 +63,19 @@ export default function ProfilePage() {
                   Delete Profile
                 </DeleteButtonContent>
               </DeleteButton>
-              {showConfirm && (
-                <DeleteConfirmation
-                  onCancel={toggleDeleteConfirm}
-                  onConfirm={handleDeleteProfile}
-                />
-              )}
             </DeleteButtonWrapper>
           )}
           <LoginButton />
         </ButtonsRow>
+        {showConfirm && (
+          <ModalWrapper>
+            <DeleteConfirmation
+              onCancel={toggleDeleteConfirm}
+              onConfirm={handleDeleteProfile}
+              message="profile"
+            />
+          </ModalWrapper>
+        )}
       </ProfileCard>
     </Container>
   );
@@ -154,6 +157,12 @@ const ButtonsRow = styled.div`
   display: flex;
   gap: 15px;
   justify-content: space-between;
+`;
+
+const ModalWrapper = styled.div`
+  width: 500px;
+  max-width: 90%;
+  margin: 0 auto;
 `;
 
 const DeleteButtonWrapper = styled.div`
